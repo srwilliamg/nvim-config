@@ -35,6 +35,12 @@ return {
         "neovim/nvim-lspconfig",
         enabled = not vim.g.vscode,
         config = function()
+            vim.lsp.enable('golangci_lint_ls')
+            vim.lsp.enable('gopls')
+            vim.lsp.enable('ts_ls')
+            vim.lsp.enable('docker_language_server') -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
+            vim.lsp.enable('jsonls') --npm i -g vscode-langservers-extracted
+            vim.lsp.enable('lua_ls')
             vim.diagnostic.config({
                 signs = {
                     numhl = {

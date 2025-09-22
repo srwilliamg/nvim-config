@@ -1,9 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  enabled = not vim.g.vscode,
   branch = "master",
   lazy = false,
   build = ":TSUpdate",
-  enabled = not vim.g.vscode,
   opts = {
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = {

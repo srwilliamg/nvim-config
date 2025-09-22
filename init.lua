@@ -60,6 +60,13 @@ keymap("v", "p", '"_dP', opts)
 
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+-- next diagnostic
+keymap("n", "]d", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+keymap("n", "[d", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
 
 if vim.g.vscode then
   -- VSCode Neovim
@@ -77,5 +84,5 @@ if vim.g.vscode then
   keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
   keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
 else
-  require("dapui").setup()
+  -- require("dapui").setup()
 end

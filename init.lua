@@ -120,14 +120,4 @@ else
   keymap("t", "<C-Down>", "<cmd>resize +2<CR>")
   keymap("t", "<C-Left>", "<cmd>vertical resize -2<CR>")
   keymap("t", "<C-Right>", "<cmd>vertical resize +2<CR>")
-
-  -- Telescope mapping
-  keymap("n", "<leader>ff", "<cmd> Telescope find_files <CR>")
-  keymap("n", "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>")
-  keymap("n", "<leader>fe", "<cmd> Telescope file_browser <CR>")
-  keymap("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
-  keymap("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
-  keymap("n", "<leader>fh", "<cmd> Telescope help_tags <CR>")
-  keymap("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
-  keymap("n", "<leader>fc", "<cmd> Telescope colorschemes <CR>")
 end

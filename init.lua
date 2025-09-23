@@ -97,6 +97,8 @@ vim.keymap.set(
 )
 
 if vim.g.vscode then
+  -- removes highlighting after escaping vim search
+  keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
   -- VSCode Neovim
   keymap({ "n", "v" }, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
   keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")

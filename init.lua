@@ -62,16 +62,6 @@ keymap("v", "p", '"_dP', opts)
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
--- next diagnostic
-keymap("n", "]d", function()
-  vim.diagnostic.jump({ count = 1, float = true })
-end)
-
--- previous diagnostic
-keymap("n", "[d", function()
-  vim.diagnostic.jump({ count = -1, float = true })
-end)
-
 -- Move between spaces
 keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
@@ -97,9 +87,19 @@ vim.keymap.set(
 )
 
 if vim.g.vscode then
+  -- VSCode Neovim
+
+  -- next diagnostic
+  keymap("n", "]f", "<cmd>lua require('vscode').action('editor.action.marker.nextInFiles')<CR>")
+  keymap("n", "]d", "<cmd>lua require('vscode').action('editor.action.marker.next')<CR>")
+
+  -- previous diagnostic
+  keymap("n", "[f", "<cmd>lua require('vscode').action('editor.action.marker.prevInFiles')<CR>")
+  keymap("n", "[d", "<cmd>lua require('vscode').action('editor.action.marker.prev')<CR>")
+
   -- removes highlighting after escaping vim search
   keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
-  -- VSCode Neovim
+
   keymap({ "n", "v" }, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
   keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
   keymap({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
@@ -110,7 +110,18 @@ if vim.g.vscode then
   keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
   keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
   keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+  keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
 else
+  -- next diagnostic
+  keymap("n", "]d", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end)
+
+  -- previous diagnostic
+  keymap("n", "[d", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end)
+
   -- resize
   keymap("n", "<C-Up>", ":resize -2<CR>")
   keymap("n", "<C-Down>", ":resize +2<CR>")

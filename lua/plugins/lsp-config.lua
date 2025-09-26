@@ -8,10 +8,10 @@ return {
     "mason-org/mason-lspconfig.nvim",
     enabled = not vim.g.vscode,
     opts = {},
-    dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      "neovim/nvim-lspconfig",
-    },
+    dependencies = { {
+      "mason-org/mason.nvim",
+      opts = {},
+    }, "neovim/nvim-lspconfig" },
   },
   {
     "saghen/blink.cmp",
@@ -20,7 +20,9 @@ return {
     dependencies = { "rafamadriz/friendly-snippets" },
     opts = {
       completion = {
-        documentation = { auto_show = true },
+        documentation = {
+          auto_show = true,
+        },
       },
       keymap = {
         preset = "none",
@@ -41,7 +43,7 @@ return {
       lspEnable("gopls")
       lspEnable("ts_ls")
       lspEnable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
-      lspEnable("jsonls") --npm i -g vscode-langservers-extracted
+      lspEnable("jsonls") -- npm i -g vscode-langservers-extracted
       lspEnable("lua_ls")
 
       lspconfig("lua_ls", {
@@ -54,10 +56,7 @@ return {
             },
             diagnostics = {
               -- Get the language server to recognize the `vim` global
-              globals = {
-                "vim",
-                "require",
-              },
+              globals = { "vim", "require" },
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
@@ -88,13 +87,18 @@ return {
         },
         update_in_insert = true,
         virtual_text = false,
-        virtual_lines = { current_line = true },
+        virtual_lines = {
+          current_line = true,
+        },
       })
     end,
     dependencies = {
       "mason-org/mason-lspconfig.nvim",
       "mason-org/mason.nvim",
-      { "saghen/blink.cmp", build = "cargo build --release" },
+      {
+        "saghen/blink.cmp",
+        build = "cargo build --release",
+      },
     },
   },
 }

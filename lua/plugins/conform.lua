@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  enabled = not vim.g.vscode,
+  -- enabled = not vim.g.vscode,
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
@@ -11,7 +11,8 @@ return {
       jsonc = { "prettierd", "prettier", stop_after_first = true },
       css = { "prettierd", "prettier", stop_after_first = true },
       jsx = { "prettierd", "prettier", stop_after_first = true },
-      yaml = { "prettier" }, -- or "yamlfmt"
+      yaml = { "prettierd" }, -- or "yamlfmt"
+      conf = { "prettierd" },
     },
     format_on_save = {
       -- These options will be passed to conform.format()

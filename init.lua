@@ -37,6 +37,15 @@ vim.opt.colorcolumn = "80"
 require("config.lazy")
 require("config.keymaps")
 
+-- Paste over selection without yanking replaced text
+keymap("v", "p", '"_dP', opts)
+
+-- Normal mode remove copy from X and V
+keymap("n", "x", '"_x', opts)
+keymap("n", "X", '"_X', opts)
+keymap("n", "c", '"_c', opts)
+keymap("n", "C", '"_C', opts)
+
 -- remove space default
 keymap("n", "<Space>", "", opts)
 
@@ -56,9 +65,6 @@ keymap("v", "K", ":m .-2<CR>==", opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- paste preserves primal yanked piece
-keymap("v", "p", '"_dP', opts)
-
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
@@ -67,6 +73,17 @@ keymap("n", "<C-h>", "<C-w>h")
 keymap("n", "<C-j>", "<C-w>j")
 keymap("n", "<C-k>", "<C-w>k")
 keymap("n", "<C-l>", "<C-w>l")
+
+-- LSP-friendly mappings (require LSP configured)
+keymap("n", "gd", vim.lsp.buf.definition, opts)
+keymap("n", "gD", vim.lsp.buf.declaration, opts)
+keymap("n", "gr", vim.lsp.buf.references, opts)
+keymap("n", "K", vim.lsp.buf.hover, opts)
+keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+keymap("n", "<leader>f", function()
+  vim.lsp.buf.format({ async = true })
+end, opts)
 
 -- Move visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

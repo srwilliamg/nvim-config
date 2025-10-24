@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  -- enabled = not vim.g.vscode,
+  enabled = not vim.g.vscode,
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },

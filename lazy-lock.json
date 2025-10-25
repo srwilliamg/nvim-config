@@ -1,6 +1,8 @@
 {
+  "CopilotChat.nvim": { "branch": "main", "commit": "a7138a0ee04d8af42c262554eccee168bbf1454f" },
   "blink.cmp": { "branch": "main", "commit": "cb87357e93376fbe9b12e60333c7f5788baca057" },
   "conform.nvim": { "branch": "master", "commit": "fbcb4fa7f34bfea9be702ffff481a8e336ebf6ed" },
+  "copilot.vim": { "branch": "release", "commit": "da369d90cfd6c396b1d0ec259836a1c7222fb2ea" },
   "flash.nvim": { "branch": "main", "commit": "2febce67ff9cf7638d2569d17c41af02c38401eb" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gruvbox": { "branch": "main", "commit": "5e0a460d8e0f7f669c158dedd5f9ae2bcac31437" },

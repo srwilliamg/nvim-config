@@ -6,9 +6,9 @@ return {
   lazy = false,
   build = ":TSUpdate",
   opts = {
-    indent = { enable = true }, ---@type lazyvim.TSFeat
-    highlight = { enable = true }, ---@type lazyvim.TSFeat
-    folds = { enable = true }, ---@type lazyvim.TSFeat
+    indent = { enable = true },
+    highlight = { enable = true },
+    folds = { enable = true },
     -- A list of parser names, or "all" (the listed parsers MUST always be installed)
     ensure_installed = {
       "c",

@@ -75,8 +75,8 @@ keymap("n", "<C-k>", "<C-w>k")
 keymap("n", "<C-l>", "<C-w>l")
 
 -- LSP-friendly mappings (require LSP configured)
-keymap("n", "gd", vim.lsp.buf.definition, opts)
-keymap("n", "gD", vim.lsp.buf.declaration, opts)
+keymap("n", "gD", vim.lsp.buf.definition, opts)
+keymap("n", "gd", vim.lsp.buf.declaration, opts)
 keymap("n", "gr", vim.lsp.buf.references, opts)
 keymap("n", "K", vim.lsp.buf.hover, opts)
 keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
@@ -88,20 +88,6 @@ end, opts)
 -- Move visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
--- Easy find and replace.
-vim.keymap.set(
-  { "v" },
-  "<leader>re",
-  '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
-  { desc = "Open search and replace for currently selected text" }
-)
-vim.keymap.set(
-  { "n" },
-  "<leader>re",
-  ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
-  { desc = "Open search and replace for word under cursor" }
-)
 
 if vim.g.vscode then
   -- VSCode Neovim
@@ -116,18 +102,30 @@ if vim.g.vscode then
 
   -- removes highlighting after escaping vim search
   keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
-
   keymap({ "n", "v" }, "<leader>t", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
   keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
   keymap({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
   keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
   keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
   keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
-  keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
   keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
   keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
   keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
-  keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+
+  keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+  keymap({ "n", "v" }, "<leader><leader>", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+
+  vim.keymap.set({ "n", "x", "i" }, "<C-d>", function()
+    require("vscode").with_insert(function()
+      require("vscode").action("editor.action.addSelectionToNextFindMatch")
+    end)
+  end)
+
+  vim.keymap.set({ "n", "x" }, "<leader>r", function()
+    require("vscode").with_insert(function()
+      require("vscode").action("editor.action.refactor")
+    end)
+  end)
 else
   -- next diagnostic
   keymap("n", "]d", function()
@@ -150,4 +148,18 @@ else
   keymap("t", "<C-Down>", "<cmd>resize +2<CR>")
   keymap("t", "<C-Left>", "<cmd>vertical resize -2<CR>")
   keymap("t", "<C-Right>", "<cmd>vertical resize +2<CR>")
+
+  -- Easy find and replace.
+  vim.keymap.set(
+    { "v" },
+    "<leader>re",
+    '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
+    { desc = "Open search and replace for currently selected text" }
+  )
+  vim.keymap.set(
+    { "n" },
+    "<leader>re",
+    ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
+    { desc = "Open search and replace for word under cursor" }
+  )
 end

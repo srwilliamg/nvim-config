@@ -76,6 +76,7 @@ keymap("n", "<C-l>", "<C-w>l")
 
 -- LSP-friendly mappings (require LSP configured)
 keymap("n", "gD", vim.lsp.buf.definition, opts)
+keymap("n", "gi", vim.lsp.buf.implementation, opts)
 keymap("n", "gd", vim.lsp.buf.declaration, opts)
 keymap("n", "gr", vim.lsp.buf.references, opts)
 keymap("n", "K", vim.lsp.buf.hover, opts)

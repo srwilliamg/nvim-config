@@ -24,7 +24,6 @@ return {
       "json",
       "lua",
       "go",
-      "gopls",
       "gomod",
       "markdown",
       "markdown_inline",
@@ -39,4 +38,7 @@ return {
     sync_install = true,
     auto_install = true,
   },
+  config = function(opts)
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 }

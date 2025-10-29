@@ -28,7 +28,7 @@ return {
         preset = "none",
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
-        ["<C-CR>"] = { "select_and_accept" },
+        ["<CR>"] = { "select_and_accept" },
       },
     },
   },
@@ -39,6 +39,8 @@ return {
       local lspconfig = vim.lsp.config
       local lspEnable = vim.lsp.enable
 
+      -- go install github.com/nametake/golangci-lint-langserver@latest
+      -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
       lspEnable("golangci_lint_ls")
       lspEnable("gopls")
       lspEnable("ts_ls")

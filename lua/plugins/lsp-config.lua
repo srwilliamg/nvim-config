@@ -1,12 +1,12 @@
 return {
   {
     "mason-org/mason.nvim",
-    enabled = not vim.g.vscode,
+    -- enabled = not vim.g.vscode,
     opts = {},
   },
   {
     "mason-org/mason-lspconfig.nvim",
-    enabled = not vim.g.vscode,
+    -- enabled = not vim.g.vscode,
     opts = {},
     dependencies = { {
       "mason-org/mason.nvim",
@@ -15,13 +15,54 @@ return {
   },
   {
     "saghen/blink.cmp",
-    enabled = not vim.g.vscode,
-    -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets" },
+    -- enabled = not vim.g.vscode,
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      "nvim-tree/nvim-web-devicons", -- Optional for file icons
+      "onsails/lspkind.nvim", --optional icons
+      -- "giuxtaposition/blink-cmp-copilot",
+      "L3MON4D3/LuaSnip",
+    },
     opts = {
       completion = {
         documentation = {
           auto_show = true,
+        },
+        ghost_text = {
+          enabled = true,
+          show_with_menu = false,
+        },
+        menu = {
+          auto_show = true,
+          draw = {
+            -- use tree sitter to label
+            treesitter = { "lsp" },
+            columns = {
+              { "kind_icon" },
+              { "label" },
+              { "source_name" },
+            },
+            components = {
+              kind_icon = {
+                ellipsis = false,
+                text = function(ctx)
+                  local icon = ctx.kind_icon
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                    if dev_icon then
+                      icon = dev_icon
+                    end
+                  else
+                    icon = require("lspkind").symbolic(ctx.kind, {
+                      mode = "symbol",
+                    })
+                  end
+
+                  return icon .. ctx.icon_gap
+                end,
+              },
+            },
+          },
         },
       },
       keymap = {
@@ -30,11 +71,47 @@ return {
         ["<C-k>"] = { "select_prev", "fallback" },
         ["<CR>"] = { "select_and_accept" },
       },
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
+      --- @type blink.cmp.SourceConfigPartial
+      sources = {
+        providers = {
+          -- copilot = {
+          --   enabled = false,
+          --   name = "copilot",
+          --   module = "blink-cmp-copilot",
+          --   score_offset = 100,
+          --   async = true,
+          --   transform_items = function(_, items)
+          --     for _, item in ipairs(items) do
+          --       item.kind_icon = ""
+          --       item.kind_name = "Copilot"
+          --     end
+          --     return items
+          --   end,
+          -- },
+          markdown = {
+            name = "markdown",
+            module = "render-markdown.integ.blink",
+            enabled = true,
+            fallbacks = { "lsp" },
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+          buffer = { max_items = 5 },
+        },
+
+        default = { "lsp", "path", "snippets", "buffer", "cmdline", "lazydev" },
+      },
     },
   },
   {
     "neovim/nvim-lspconfig",
-    enabled = not vim.g.vscode,
+    -- enabled = not vim.g.vscode,
     config = function()
       local lspconfig = vim.lsp.config
       local lspEnable = vim.lsp.enable

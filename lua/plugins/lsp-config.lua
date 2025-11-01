@@ -1,12 +1,12 @@
 return {
   {
     "mason-org/mason.nvim",
-    -- enabled = not vim.g.vscode,
+    enabled = not vim.g.vscode,
     opts = {},
   },
   {
     "mason-org/mason-lspconfig.nvim",
-    -- enabled = not vim.g.vscode,
+    enabled = not vim.g.vscode,
     opts = {},
     dependencies = { {
       "mason-org/mason.nvim",
@@ -15,7 +15,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    -- enabled = not vim.g.vscode,
+    enabled = not vim.g.vscode,
     dependencies = {
       "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons", -- Optional for file icons
@@ -111,7 +111,15 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    -- enabled = not vim.g.vscode,
+    enabled = not vim.g.vscode,
+    dependencies = {
+      "mason-org/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      {
+        "saghen/blink.cmp",
+        build = "cargo build --release",
+      },
+    },
     config = function()
       local lspconfig = vim.lsp.config
       local lspEnable = vim.lsp.enable
@@ -171,13 +179,5 @@ return {
         },
       })
     end,
-    dependencies = {
-      "mason-org/mason-lspconfig.nvim",
-      "mason-org/mason.nvim",
-      {
-        "saghen/blink.cmp",
-        build = "cargo build --release",
-      },
-    },
   },
 }

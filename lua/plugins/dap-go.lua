@@ -16,6 +16,7 @@ return {
           program = "${workspaceFolder}/main.go",
           port = "${port}",
           console = "integratedTerminal",
+          outputMode = "remote",
           dlvFlags = {
             "--log",
             "--log-output=debugger,dap", -- More verbose logging
@@ -29,6 +30,7 @@ return {
           program = "${file}",
           buildFlags = require("dap-go").get_build_flags,
           console = "integratedTerminal",
+          outputMode = "remote",
           dlvFlags = {
             "--log",
             "--log-output=debugger,dap", -- More verbose logging

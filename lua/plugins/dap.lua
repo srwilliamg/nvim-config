@@ -12,7 +12,7 @@ return {
     },
     keys = {
       {
-        "<F8>",
+        "<F5>",
         function()
           require("dap").continue()
         end,
@@ -40,7 +40,7 @@ return {
         { desc = "Debug: Step Out" },
       },
       {
-        "<leader>db",
+        "<leader>b",
         function()
           require("dap").toggle_breakpoint()
         end,
@@ -52,7 +52,6 @@ return {
 
       local local_debugger = vim.fn.expand("~/.local/share/nvim/js-debug/src/dapDebugServer.js")
 
-      print(local_debugger)
       dap.adapters["pwa-node"] = {
         type = "server",
         host = "localhost",
@@ -153,6 +152,7 @@ return {
     },
     config = function(_, opts)
       local dap, dapui = require("dap"), require("dapui")
+      dapui.setup(opts)
 
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()

@@ -38,7 +38,7 @@ return {
     sync_install = true,
     auto_install = true,
   },
-  config = function(opts)
+  config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
 }

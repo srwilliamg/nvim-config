@@ -1,4 +1,10 @@
 [
+    // close terminal using ESC and focus editor
+    {
+        "key": "escape",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminalFocus"
+    },
     // focus terminal when ctrl+j is pressed and terminal is not focused
     {
         "key": "ctrl+j",
@@ -26,18 +32,18 @@
         // go to quick open when pressing space twice in a row
         "key": "space space",
         "command": "workbench.action.quickOpen",
-        "when": "!editorFocus && !terminalFocus"
+        "when": "!editorFocus && !terminalFocus && !inputFocus"
     },
     {
         // close terminal and focus editor
         "key": "ctrl+`",
         "command": "workbench.action.terminal.toggleTerminal",
-        "when": "terminalFocus",
+        "when": "terminalFocus"
     },
     {
         // Focus the active editor group when pressing Ctrl+\
         "key": "ctrl+\\",
-        "command": "workbench.action.focusActiveEditorGroup",
+        "command": "workbench.action.focusActiveEditorGroup"
     },
     {
         // Focus the active editor group when pressing Ctrl+\ but only when the explorer is visible or focused
@@ -50,5 +56,5 @@
         "key": "ctrl+\\",
         "command": "workbench.action.terminal.focus",
         "when": "editorFocus"
-    },
+    }
 ]

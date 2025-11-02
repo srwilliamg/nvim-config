@@ -1,5 +1,6 @@
 return {
   {
+    enabled = not vim.g.vscode,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
     config = function()

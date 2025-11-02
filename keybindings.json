@@ -1,0 +1,54 @@
+[
+    // focus terminal when ctrl+j is pressed and terminal is not focused
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.terminal.focus",
+        "when": "!terminalFocus"
+    },
+    // focus explorer when ctrl+h is pressed and explorer is not focused
+    {
+        "key": "ctrl+h",
+        "command": "workbench.view.explorer",
+        "when": "!explorerViewletFocus"
+    },
+    // focus editor when ctrl+k or ctrl+l is pressed and editor is not focused
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "!editorFocus"
+    },
+    {
+        // go to quick open when pressing space twice in a row
+        "key": "space space",
+        "command": "workbench.action.quickOpen",
+        "when": "!editorFocus && !terminalFocus"
+    },
+    {
+        // close terminal and focus editor
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminalFocus",
+    },
+    {
+        // Focus the active editor group when pressing Ctrl+\
+        "key": "ctrl+\\",
+        "command": "workbench.action.focusActiveEditorGroup",
+    },
+    {
+        // Focus the active editor group when pressing Ctrl+\ but only when the explorer is visible or focused
+        "key": "ctrl+\\",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "explorerViewletVisible || explorerViewletFocus"
+    },
+    {
+        // Focus the terminal when pressing Ctrl+\ but only when the editor is focused
+        "key": "ctrl+\\",
+        "command": "workbench.action.terminal.focus",
+        "when": "editorFocus"
+    },
+]

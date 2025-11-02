@@ -1,5 +1,6 @@
 return {
   {
+    enabled = not vim.g.vscode,
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },

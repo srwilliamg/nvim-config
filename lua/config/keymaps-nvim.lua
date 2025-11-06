@@ -54,3 +54,6 @@ vim.keymap.set(
 
   { desc = "Open search and replace for word under cursor" }
 )
+
+-- Terminal mode escape to normal mode
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)

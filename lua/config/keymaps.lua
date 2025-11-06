@@ -4,6 +4,12 @@ local opts = { noremap = true, silent = true }
 -- Paste over selection without yanking replaced text
 keymap("v", "p", '"_dP', opts)
 
+-- p using system clipboard
+keymap("v", "p", '"+p', opts)
+
+-- y using system clipboard
+keymap("v", "y", '"+y', opts)
+
 -- Normal mode remove copy from X and V
 keymap("n", "x", '"_x', opts)
 keymap("n", "X", '"_X', opts)
@@ -48,6 +54,3 @@ end, opts)
 -- Move visual mode
 -- keymap("v", "J", ":m '>+1<CR>gv=gv")
 -- keymap("v", "K", ":m '<-2<CR>gv=gv")
-
--- Terminal mode escape to normal mode
-keymap("t", "<Esc>", "<C-\\><C-n>", opts)

@@ -16,12 +16,6 @@ keymap("n", "[d", "<cmd>lua require('vscode').action('editor.action.marker.prev'
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
-keymap(
-  { "n", "v" },
-  "<leader>t",
-  "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>",
-  opts
-)
 keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>", opts)
 keymap({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>", opts)
 keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>", opts)
@@ -47,6 +41,8 @@ keymap(
 keymap({ "n", "v" }, "za", "<cmd>lua require('vscode').action('editor.fold')<CR>", opts)
 -- unfold current block
 keymap({ "n", "v" }, "zm", "<cmd>lua require('vscode').action('editor.unfold')<CR>", opts)
+-- unfold recursively
+keymap({ "n", "v" }, "zr", "<cmd>lua require('vscode').action('editor.unfoldRecursively')<CR>", opts)
 -- fold all blocks
 keymap({ "n", "v" }, "zR", "<cmd>lua require('vscode').action('editor.unfoldAll')<CR>", opts)
 -- unfold all blocks
@@ -65,3 +61,9 @@ keymap({ "n", "x" }, "<leader>r", function()
     require("vscode").action("editor.action.refactor")
   end)
 end, opts)
+
+-- next tab using ctrl + 0
+keymap("n", "<C-m>", "<cmd>lua require('vscode').action('workbench.action.nextEditor')<CR>", opts)
+
+-- previous tab using ctrl + ,
+keymap("n", "<C-a>", "<cmd>lua require('vscode').action('workbench.action.previousEditor')<CR>", opts)

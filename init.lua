@@ -7,6 +7,7 @@ vim.g.neovide_scale_factor = 1
 vim.relativenumber = true
 
 -- vim.opts
+vim.opt.clipboard = "unnamedplus"
 vim.opt.wrap = false
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.nu = true

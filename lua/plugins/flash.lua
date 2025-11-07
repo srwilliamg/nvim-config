@@ -1,4 +1,5 @@
 return {
+  enable = false,
   "folke/flash.nvim",
   event = "VeryLazy",
   -- enabled = not vim.g.vscode,

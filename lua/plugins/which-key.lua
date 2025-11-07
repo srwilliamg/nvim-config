@@ -1,6 +1,7 @@
 return {
   "folke/which-key.nvim",
-  enabled = not vim.g.vscode,
+  enable = false,
+  --[[ enabled = not vim.g.vscode, ]]
   event = "VeryLazy",
   opts = {
     -- your configuration comes here

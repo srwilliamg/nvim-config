@@ -1,9 +1,7 @@
 return {
-  enable = false,
+  enable = true,
   "folke/flash.nvim",
   event = "VeryLazy",
-  -- enabled = not vim.g.vscode,
-  opts = {},
   keys = {
     {
       "s",

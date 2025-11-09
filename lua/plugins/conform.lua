@@ -19,5 +19,8 @@ return {
       timeout_ms = 500,
       lsp_format = "fallback",
     },
+    config = function(_, opts)
+      require("conform").setup(opts)
+    end,
   },
 }

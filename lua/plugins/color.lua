@@ -74,11 +74,27 @@ return {
     end,
   },
   {
+    -- enabled = false,
     enabled = not vim.g.vscode,
     "eldritch-theme/eldritch.nvim",
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = {
+      style = "dark", -- "dark" or "light"
+      transparent = false, -- Enable/disable setting a transparent background.
+      terminalColors = true, -- Enable/disable setting terminal colors (vim.g.terminal_color_*) used in the terminal.
+      ---@param highlights Highlights
+      ---@param colors ColorScheme
+      on_colors = function(colors)
+        -- colors.bg = "#1e1e2e"
+        -- black bg
+        colors.bg = "#16161e"
+        -- colors.fg = "#cdd6f4"
+      end,
+    },
+    config = function(_, opts)
+      require("eldritch").setup(opts)
+    end,
     init = function()
       vim.cmd([[colorscheme eldritch]])
     end,

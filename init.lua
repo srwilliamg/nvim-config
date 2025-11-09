@@ -4,19 +4,21 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.neovide_scale_factor = 1
-vim.relativenumber = true
 
 -- vim.opts
+vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.wrap = false
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.nu = true
 vim.opt.relativenumber = true
+-- indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+-- appearance
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -30,6 +32,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
+
 -- highlight_yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),

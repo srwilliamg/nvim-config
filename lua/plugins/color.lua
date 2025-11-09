@@ -1,7 +1,7 @@
 return {
   {
-    enabled = not vim.g.vscode,
-    -- enabled = false,
+    -- enabled = not vim.g.vscode,
+    enabled = false,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
     init = function()
@@ -71,6 +71,16 @@ return {
     end,
     init = function()
       vim.cmd.colorscheme("kanagawa-paper-ink")
+    end,
+  },
+  {
+    enabled = not vim.g.vscode,
+    "eldritch-theme/eldritch.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    init = function()
+      vim.cmd([[colorscheme eldritch]])
     end,
   },
 }

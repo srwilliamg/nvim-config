@@ -57,3 +57,8 @@ vim.keymap.set(
 
 -- Terminal mode escape to normal mode
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+
+-- Goto previous buffer
+keymap({ "n", "v" }, "ga", "<C-^>", { desc = "Goto previous buffer" })
+-- Goto next buffer
+keymap({ "n", "v" }, "gn", ":bnext<CR>", { desc = "Goto next buffer" })

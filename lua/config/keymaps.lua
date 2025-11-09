@@ -44,13 +44,32 @@ keymap("n", "gD", vim.lsp.buf.declaration, opts)
 keymap("n", "gi", vim.lsp.buf.implementation, opts)
 keymap("n", "gt", vim.lsp.buf.type_definition, opts)
 keymap("n", "gr", vim.lsp.buf.references, opts)
+
 keymap("n", "K", vim.lsp.buf.hover, opts)
 keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 keymap("n", "<leader>f", function()
   vim.lsp.buf.format({ async = true })
 end, opts)
+--  shortcut to beginning of line
+keymap("n", "gs", "^", opts)
 
 -- Move visual mode
 -- keymap("v", "J", ":m '>+1<CR>gv=gv")
 -- keymap("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Keep cursor centered when navigating
+-- keymap("n", "J", "mzJ`z")
+-- Centers screen after half page jump
+-- keymap("n", "<C-d>", "<C-d>zz")
+-- centers screen after half page jump
+-- keymap("n", "<C-u>", "<C-u>zz")
+-- centers screen after search next/prev
+keymap("n", "n", "nzzzv")
+-- centers screen after search next/prev
+keymap("n", "N", "Nzzzv")
+
+-- Copy relative path
+keymap("n", "<leader>yp", ":let @+=expand('%:.')<cr>", { desc = "Copy relative path" })
+-- Copy absolute path
+keymap("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })

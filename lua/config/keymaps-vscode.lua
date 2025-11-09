@@ -63,7 +63,7 @@ keymap({ "n", "x" }, "<leader>r", function()
 end, opts)
 
 -- next tab using ctrl + 0
-keymap("n", "<C-m>", "<cmd>lua require('vscode').action('workbench.action.nextEditor')<CR>", opts)
+keymap("n", "gn", "<cmd>lua require('vscode').action('workbench.action.nextEditor')<CR>", opts)
 
 -- previous tab using ctrl + ,
-keymap("n", "<C-a>", "<cmd>lua require('vscode').action('workbench.action.previousEditor')<CR>", opts)
+keymap("n", "ga", "<cmd>lua require('vscode').action('workbench.action.previousEditor')<CR>", opts)

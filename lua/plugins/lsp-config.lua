@@ -128,6 +128,28 @@ return {
       -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
       lspEnable("golangci_lint_ls")
       lspEnable("gopls")
+      lspconfig("gopls", {
+        settings = {
+          gopls = {
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeLoopVariables = true,
+            },
+            analyses = {
+              unusedparams = true,
+              nilness = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            staticcheck = true,
+          },
+        },
+      })
       lspEnable("ts_ls")
       lspEnable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
       lspEnable("jsonls") -- npm i -g vscode-langservers-extracted

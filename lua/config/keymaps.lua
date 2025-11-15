@@ -73,3 +73,5 @@ keymap("n", "N", "Nzzzv")
 keymap("n", "<leader>yp", ":let @+=expand('%:.')<cr>", { desc = "Copy relative path" })
 -- Copy absolute path
 keymap("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
+--  file name
+keymap("n", "<leader>yf", ":let @+=expand('%:t')<cr>", { desc = "Copy relative path" })

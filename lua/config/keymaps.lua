@@ -75,3 +75,22 @@ keymap("n", "<leader>yp", ":let @+=expand('%:.')<cr>", { desc = "Copy relative p
 keymap("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
 --  file name
 keymap("n", "<leader>yf", ":let @+=expand('%:t')<cr>", { desc = "Copy relative path" })
+
+-- Center to focus
+keymap("n", "{", "{zz")
+keymap("n", "}", "}zz")
+keymap("n", "n", "nzz")
+keymap("n", "N", "Nzz")
+keymap("n", "G", "Gzz")
+keymap("n", "i", "zzi")
+keymap("n", "I", "zzI")
+keymap("n", "o", "zzo")
+keymap("n", "O", "zzO")
+keymap("n", "a", "zza")
+keymap("n", "A", "zzA")
+keymap("n", "s", "zzs")
+keymap("n", "S", "zzS")
+keymap("n", "c", "zzc")
+keymap("n", "C", "zzC")
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")

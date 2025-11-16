@@ -44,14 +44,15 @@ return {
     },
   },
   {
-    -- enabled = not vim.g.vscode,
-    enabled = false,
+    enabled = not vim.g.vscode,
+    -- enabled = false,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require("kanagawa").setup(opts)
     end,
     init = function()
-      require("kanagawa").load("dragon")
+      -- require("kanagawa").load("dragon")
+      require("kanagawa").load("wave")
       -- vim.cmd.colorscheme("kanagawa-dragon")
     end,
   },
@@ -74,8 +75,8 @@ return {
     end,
   },
   {
-    -- enabled = false,
-    enabled = not vim.g.vscode,
+    enabled = false,
+    -- enabled = not vim.g.vscode,
     "eldritch-theme/eldritch.nvim",
     lazy = false,
     priority = 1000,

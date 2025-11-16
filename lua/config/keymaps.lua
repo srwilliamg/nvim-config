@@ -39,21 +39,23 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 -- LSP-friendly mappings (require LSP configured)
-keymap("n", "gd", vim.lsp.buf.definition, opts)
-keymap("n", "gD", vim.lsp.buf.declaration, opts)
 keymap("n", "gi", vim.lsp.buf.implementation, opts)
 keymap("n", "gt", vim.lsp.buf.type_definition, opts)
-keymap("n", "gr", vim.lsp.buf.references, opts)
-
-keymap("n", "K", vim.lsp.buf.hover, opts)
 keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-keymap("n", "<leader>f", function()
-  vim.lsp.buf.format({ async = true })
-end, opts)
+
+-- disable in favor of default lsp config in vscode
+-- keymap("n", "gd", vim.lsp.buf.definition, opts)
+-- keymap("n", "gD", vim.lsp.buf.declaration, opts)
+-- keymap("n", "gr", vim.lsp.buf.references, opts)
+-- keymap("n", "K", vim.lsp.buf.hover, opts)
+
 --  shortcut to beginning of line
 keymap("n", "gs", "^", opts)
 
+keymap("n", "<leader>f", function()
+  vim.lsp.buf.format({ async = true })
+end, opts)
 -- Move visual mode
 -- keymap("v", "J", ":m '>+1<CR>gv=gv")
 -- keymap("v", "K", ":m '<-2<CR>gv=gv")

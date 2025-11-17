@@ -140,8 +140,17 @@ return {
         -- Specific settings to send to the server. The schema is server-defined.
         -- Example: https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
         settings = {
-
-          format = { enable = false },
+          format = {
+            enable = false,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { "vim", "require" },
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
           Lua = {
             runtime = {
               version = "LuaJIT",

@@ -67,3 +67,9 @@ keymap("n", "gn", "<cmd>lua require('vscode').action('workbench.action.nextEdito
 
 -- previous tab using ctrl + ,
 keymap("n", "ga", "<cmd>lua require('vscode').action('workbench.action.previousEditor')<CR>", opts)
+
+-- LSP-friendly mappings (require LSP configured)
+keymap("n", "gi", vim.lsp.buf.implementation, opts)
+keymap("n", "gt", vim.lsp.buf.type_definition, opts)
+keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)

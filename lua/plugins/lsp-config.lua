@@ -121,14 +121,39 @@ return {
       },
     },
     config = function()
-      local lspconfig = vim.lsp.config
-      local lspEnable = vim.lsp.enable
-
       -- go install github.com/nametake/golangci-lint-langserver@latest
       -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      lspEnable("golangci_lint_ls")
-      lspEnable("gopls")
-      lspconfig("gopls", {
+      vim.lsp.enable("golangci_lint_ls")
+      vim.lsp.enable("ts_ls")
+      vim.lsp.enable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
+      vim.lsp.enable("jsonls") -- npm i -g vscode-langservers-extracted
+
+      vim.lsp.config["lua_ls"] = {
+        -- Command and arguments to start the server.
+        cmd = { "lua-language-server" },
+        -- Filetypes to automatically attach to.
+        filetypes = { "lua" },
+        -- Sets the "workspace" to the directory where any of these files is found.
+        -- Files that share a root directory will reuse the LSP server connection.
+        -- Nested lists indicate equal priority, see |vim.lsp.Config|.
+        root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
+        -- Specific settings to send to the server. The schema is server-defined.
+        -- Example: https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
+        settings = {
+
+          format = { enable = false },
+          Lua = {
+            runtime = {
+              version = "LuaJIT",
+            },
+          },
+        },
+      }
+
+      -- config also enables the lsp
+      vim.lsp.config("go_ls", {
+        cmd = { "gopls" },
+        fileTypes = { "go" },
         settings = {
           gopls = {
             hints = {
@@ -150,28 +175,17 @@ return {
           },
         },
       })
-      lspEnable("ts_ls")
-      lspEnable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
-      lspEnable("jsonls") -- npm i -g vscode-langservers-extracted
-      lspEnable("lua_ls")
-      lspconfig("lua_ls", {
-        settings = {
-          Lua = {
-            -- Disable formatting provided by Lua LS
-            format = {
-              enable = false,
-            },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { "vim", "require" },
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-      })
+
+      local opts = { noremap = true, silent = true }
+      -- LSP-friendly mappings (require LSP configured)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
       vim.diagnostic.config({
         signs = {

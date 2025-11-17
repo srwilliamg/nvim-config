@@ -38,18 +38,6 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
--- LSP-friendly mappings (require LSP configured)
-keymap("n", "gi", vim.lsp.buf.implementation, opts)
-keymap("n", "gt", vim.lsp.buf.type_definition, opts)
-keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
-keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-
--- disable in favor of default lsp config in vscode
--- keymap("n", "gd", vim.lsp.buf.definition, opts)
--- keymap("n", "gD", vim.lsp.buf.declaration, opts)
--- keymap("n", "gr", vim.lsp.buf.references, opts)
--- keymap("n", "K", vim.lsp.buf.hover, opts)
-
 --  shortcut to beginning of line
 keymap("n", "gs", "^", opts)
 

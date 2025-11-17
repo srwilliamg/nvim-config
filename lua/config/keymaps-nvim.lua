@@ -1,34 +1,33 @@
 -- VSCode Neovim
-local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- Move between spaces
-keymap("n", "<C-h>", "<C-w>h")
-keymap("n", "<C-j>", "<C-w>j")
-keymap("n", "<C-k>", "<C-w>k")
-keymap("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- next diagnostic
-keymap("n", "]d", function()
+vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end)
 
 -- previous diagnostic
-keymap("n", "[d", function()
+vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end)
 
 -- resize
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- terminal resize
-keymap("t", "<C-Up>", "<cmd>resize -2<CR>", opts)
-keymap("t", "<C-Down>", "<cmd>resize +2<CR>", opts)
-keymap("t", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
-keymap("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
+vim.keymap.set("t", "<C-Up>", "<cmd>resize -2<CR>", opts)
+vim.keymap.set("t", "<C-Down>", "<cmd>resize +2<CR>", opts)
+vim.keymap.set("t", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
+vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- fold current block
 -- toggle fold
@@ -56,15 +55,30 @@ vim.keymap.set(
 )
 
 -- disable inline hint for golang
-keymap("n", "<leader>dh", function()
+vim.keymap.set("n", "<leader>dh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   vim.notify("Toggled Go inline hints")
 end, { desc = "Toggle Go inline hints" })
 
 -- Terminal mode escape to normal mode
-keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 
 -- Goto previous buffer
-keymap({ "n", "v" }, "ga", "<C-^>", { desc = "Goto previous buffer" })
+vim.keymap.set({ "n", "v" }, "ga", "<C-^>", { desc = "Goto previous buffer" })
 -- Goto next buffer
-keymap({ "n", "v" }, "gn", ":bnext<CR>", { desc = "Goto next buffer" })
+vim.keymap.set({ "n", "v" }, "gn", ":bnext<CR>", { desc = "Goto next buffer" })
+
+-- Allow exiting insert mode in terminal by hitting <ESC>
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+-- Feed ESC in terminal mode using <C-\>
+vim.keymap.set("t", "<C-\\>", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+end, opts)
+
+vim.api.nvim_create_autocmd("TermLeave", {
+  desc = "Reload buffers when leaving terminal",
+  pattern = "*",
+  callback = function()
+    vim.cmd.checktime()
+  end,
+})

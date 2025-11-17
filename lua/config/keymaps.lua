@@ -40,20 +40,11 @@ keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 --  shortcut to beginning of line
 keymap("n", "gs", "^", opts)
-
+-- format
 keymap("n", "<leader>f", function()
   vim.lsp.buf.format({ async = true })
 end, opts)
--- Move visual mode
--- keymap("v", "J", ":m '>+1<CR>gv=gv")
--- keymap("v", "K", ":m '<-2<CR>gv=gv")
 
--- Keep cursor centered when navigating
--- keymap("n", "J", "mzJ`z")
--- Centers screen after half page jump
--- keymap("n", "<C-d>", "<C-d>zz")
--- centers screen after half page jump
--- keymap("n", "<C-u>", "<C-u>zz")
 -- centers screen after search next/prev
 keymap("n", "n", "nzzzv")
 -- centers screen after search next/prev

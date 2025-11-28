@@ -157,6 +157,8 @@ return {
 
   -- DAP setup
   {
+
+    enabled = not vim.g.vscode,
     "mfussenegger/nvim-dap",
     event = "VeryLazy",
     keys = {
@@ -285,6 +287,7 @@ return {
   -- DAP UI setup
   {
     "rcarriga/nvim-dap-ui",
+    enabled = not vim.g.vscode,
     event = "VeryLazy",
     dependencies = {
       "nvim-neotest/nvim-nio",
@@ -325,6 +328,7 @@ return {
     },
   },
   {
+    enabled = not vim.g.vscode,
     "theHamsta/nvim-dap-virtual-text",
     opts = {},
   },

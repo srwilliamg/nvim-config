@@ -2,6 +2,7 @@ return {
 
   -- Neotest setup
   {
+    enabled = not vim.g.vscode,
     "nvim-neotest/neotest",
     event = "VeryLazy",
     dependencies = {

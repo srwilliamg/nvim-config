@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    -- enabled = not vim.g.vscode,
-    enabled = true,
+    enabled = not vim.g.vscode,
+    -- enabled = false,
     branch = "master",
     lazy = false,
     build = ":TSUpdate",

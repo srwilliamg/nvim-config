@@ -18,6 +18,7 @@ local keys = {
 
 return {
   "ThePrimeagen/harpoon",
+  enabled = not vim.g.vscode,
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {

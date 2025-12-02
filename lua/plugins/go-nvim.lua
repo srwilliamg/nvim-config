@@ -1,3 +1,5 @@
+local desc = Utils.plugin_keymap_desc("go.nvim")
+
 return {
   "ray-x/go.nvim",
   enabled = not vim.g.vscode,
@@ -20,6 +22,10 @@ return {
       end,
       group = format_sync_grp,
     })
+
+    vim.keymap.set("n", "<leader>tc", ":GoTest -vn<CR>", { desc = desc("Run closest test") })
+    vim.keymap.set("n", "<leader>tf", ":GoTestFile -v<CR>", { desc = desc("Run tests in current file") })
+    vim.keymap.set("n", "<leader>ts", ":GoTestFunc -sv<CR>", { desc = desc("Select one test to run") })
   end,
   event = { "CmdlineEnter" },
   ft = { "go", "gomod" },

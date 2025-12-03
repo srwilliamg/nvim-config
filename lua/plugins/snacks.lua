@@ -21,6 +21,9 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    zen = {
+      center = false,
+    },
     bigfile = { enabled = true },
     dashboard = {
       width = 60,

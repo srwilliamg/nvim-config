@@ -54,12 +54,6 @@ vim.keymap.set(
   { desc = "Open search and replace for word under cursor" }
 )
 
--- disable inline hint for golang
-vim.keymap.set("n", "<leader>dh", function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  vim.notify("Toggled Go inline hints")
-end, { desc = "Toggle Go inline hints" })
-
 -- Terminal mode escape to normal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 

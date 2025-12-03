@@ -194,8 +194,36 @@ return {
 
       -- config also enables the lsp
       vim.lsp.config("go_ls", {
-        cmd = { "gopls" },
-        fileTypes = { "go" },
+        filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
+        message_level = vim.lsp.protocol.MessageType.Error,
+        cmd = {
+          "gopls", -- share the gopls instance if there is one already
+          "-remote.debug=:0",
+        },
+        capabilities = {
+          textDocument = {
+            completion = {
+              completionItem = {
+                commitCharactersSupport = true,
+                deprecatedSupport = true,
+                documentationFormat = { "markdown", "plaintext" },
+                preselectSupport = true,
+                insertReplaceSupport = true,
+                labelDetailsSupport = true,
+                snippetSupport = true,
+                resolveSupport = {
+                  properties = {
+                    "documentation",
+                    "details",
+                    "additionalTextEdits",
+                  },
+                },
+              },
+              contextSupport = true,
+              dynamicRegistration = true,
+            },
+          },
+        },
         settings = {
           gopls = {
             hints = {
@@ -214,9 +242,16 @@ return {
               useany = true,
             },
             staticcheck = true,
+            gofumpt = true,
           },
         },
       })
+      --
+      -- -- disable inline hint for golang
+      -- vim.keymap.set("n", "<leader>dh", function()
+      --   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      --   vim.notify("Toggled Go inline hints")
+      -- end, { desc = "Toggle Go inline hints" })
 
       vim.lsp.config("harper_ls", {
         settings = {

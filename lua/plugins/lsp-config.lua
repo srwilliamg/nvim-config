@@ -2,20 +2,54 @@ return {
   {
     "mason-org/mason.nvim",
     enabled = not vim.g.vscode,
-    opts = {},
+    opts = {
+      opts = {
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      },
+    },
   },
   {
     "mason-org/mason-lspconfig.nvim",
-    enabled = not vim.g.vscode,
-    opts = {},
-    dependencies = { {
-      "mason-org/mason.nvim",
-      opts = {},
-    }, "neovim/nvim-lspconfig" },
+    opts = {
+      automatic_enable = true,
+      ensure_installed = {
+        "lua_ls",
+        "docker_language_server",
+        "eslint",
+        "golangci_lint_ls",
+        "gopls",
+        "harper_ls",
+        "jsonls",
+        "stylua",
+        "ts_ls",
+        "yamlls",
+
+        -- "delve",
+        -- "go-debug-adapter",
+        -- "goimports",
+        -- "gotests",
+        -- "gotestsum",
+        -- "js-debug-adapter",
+        -- "prettier",
+        -- "prettierd",
+        -- "typescript-language-server",
+      },
+    },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
   },
   {
     "saghen/blink.cmp",
     enabled = not vim.g.vscode,
+    build = "cargo build --release",
     dependencies = {
       "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons", -- Optional for file icons
@@ -124,7 +158,6 @@ return {
       -- go install github.com/nametake/golangci-lint-langserver@latest
       -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
       vim.lsp.enable("golangci_lint_ls")
-      vim.lsp.enable("ts_ls")
       vim.lsp.enable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
       vim.lsp.enable("jsonls") -- npm i -g vscode-langservers-extracted
 
@@ -181,6 +214,17 @@ return {
               useany = true,
             },
             staticcheck = true,
+          },
+        },
+      })
+
+      vim.lsp.config("harper_ls", {
+        settings = {
+          ["harper-ls"] = {
+            linters = {
+              SentenceCapitalization = false,
+              SpellCheck = false,
+            },
           },
         },
       })

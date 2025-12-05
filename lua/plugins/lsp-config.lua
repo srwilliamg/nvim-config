@@ -1,3 +1,5 @@
+local desc = Utils.plugin_keymap_desc("LSP")
+
 return {
   {
     "mason-org/mason.nvim",
@@ -245,12 +247,12 @@ return {
           },
         },
       })
-      --
-      -- -- disable inline hint for golang
-      -- vim.keymap.set("n", "<leader>dh", function()
-      --   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      --   vim.notify("Toggled Go inline hints")
-      -- end, { desc = "Toggle Go inline hints" })
+
+      -- disable inline hint for golang
+      vim.keymap.set("n", "<leader>dh", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        vim.notify("Toggled Go inline hints")
+      end, { desc = "Toggle Go inline hints" })
 
       vim.lsp.config("harper_ls", {
         settings = {
@@ -263,16 +265,20 @@ return {
         },
       })
 
-      local opts = { noremap = true, silent = true }
       -- LSP-friendly mappings (require LSP configured)
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = desc("Go to implementation") })
+      vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = desc("Type definition") })
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = desc("Definition") })
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = desc("Declaration") })
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = desc("References") })
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = desc("Hover") })
+      vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = desc("Rename") })
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = desc("Code Action") })
+      vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, { desc = desc("Run Codelens") })
+      vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = desc("Refresh & Display Codelens") })
+      vim.keymap.set("n", "<leader>cR", function()
+        Snacks.rename.rename_file()
+      end, { desc = desc("Rename File") })
 
       vim.diagnostic.config({
         signs = {

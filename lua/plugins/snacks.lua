@@ -1,3 +1,4 @@
+local desc = Utils.plugin_keymap_desc("Snacks")
 local logo = [[
 ⠀⠀⠀⠀⠀⠀⠀⣠⡤⠶⡄⠀⠀⠀⠀⠀⠀⠀⢠⠶⣦⣀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢀⣴⣿⡟⠀⠈⣀⣾⣝⣯⣿⣛⣷⣦⡀⠀⠈⢿⣿⣦⡀⠀⠀⠀⠀
@@ -101,42 +102,42 @@ return {
       function()
         Snacks.picker.smart()
       end,
-      desc = "Smart Find Files",
+      desc = desc("Smart Find Files"),
     },
     {
       "<leader>,",
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers",
+      desc = desc("Buffers"),
     },
     {
       "<leader>/",
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep",
+      desc = desc("Grep"),
     },
     {
       "<leader>:",
       function()
         Snacks.picker.command_history()
       end,
-      desc = "Command History",
+      desc = desc("Command History"),
     },
     {
       "<leader>n",
       function()
         Snacks.picker.notifications()
       end,
-      desc = "Notification History",
+      desc = desc("Notification History"),
     },
     {
       "<leader>e",
       function()
         Snacks.explorer()
       end,
-      desc = "File Explorer",
+      desc = desc("File Explorer"),
     },
     -- find
     {
@@ -144,42 +145,42 @@ return {
       function()
         Snacks.picker.buffers()
       end,
-      desc = "Buffers",
+      desc = desc("Buffers"),
     },
     {
       "<leader>fc",
       function()
         Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
       end,
-      desc = "Find Config File",
+      desc = desc("Find Config File"),
     },
     {
       "<leader>ff",
       function()
         Snacks.picker.files()
       end,
-      desc = "Find Files",
+      desc = desc("Find Files"),
     },
     {
       "<leader>fg",
       function()
         Snacks.picker.git_files()
       end,
-      desc = "Find Git Files",
+      desc = desc("Find Git Files"),
     },
     {
       "<leader>fp",
       function()
         Snacks.picker.projects()
       end,
-      desc = "Projects",
+      desc = desc("Projects"),
     },
     {
       "<leader>fr",
       function()
         Snacks.picker.recent()
       end,
-      desc = "Recent",
+      desc = desc("Recent"),
     },
     -- git
     {
@@ -187,49 +188,49 @@ return {
       function()
         Snacks.picker.git_branches()
       end,
-      desc = "Git Branches",
+      desc = desc("Git Branches"),
     },
     {
       "<leader>gl",
       function()
         Snacks.picker.git_log()
       end,
-      desc = "Git Log",
+      desc = desc("Git Log"),
     },
     {
       "<leader>gL",
       function()
         Snacks.picker.git_log_line()
       end,
-      desc = "Git Log Line",
+      desc = desc("Git Log Line"),
     },
     {
       "<leader>gs",
       function()
         Snacks.picker.git_status()
       end,
-      desc = "Git Status",
+      desc = desc("Git Status"),
     },
     {
       "<leader>gS",
       function()
         Snacks.picker.git_stash()
       end,
-      desc = "Git Stash",
+      desc = desc("Git Stash"),
     },
     {
       "<leader>gd",
       function()
         Snacks.picker.git_diff()
       end,
-      desc = "Git Diff (Hunks)",
+      desc = desc("Git Diff (Hunks)"),
     },
     {
       "<leader>gf",
       function()
         Snacks.picker.git_log_file()
       end,
-      desc = "Git Log File",
+      desc = desc("Git Log File"),
     },
     -- Grep
     {
@@ -237,28 +238,28 @@ return {
       function()
         Snacks.picker.lines()
       end,
-      desc = "Buffer Lines",
+      desc = desc("Buffer Lines"),
     },
     {
       "<leader>sB",
       function()
         Snacks.picker.grep_buffers()
       end,
-      desc = "Grep Open Buffers",
+      desc = desc("Grep Open Buffers"),
     },
     {
       "<leader>sg",
       function()
         Snacks.picker.grep()
       end,
-      desc = "Grep",
+      desc = desc("Grep"),
     },
     {
       "<leader>sw",
       function()
         Snacks.picker.grep_word()
       end,
-      desc = "Visual selection or word",
+      desc = desc("Visual selection or word"),
       mode = { "n", "x" },
     },
     -- search
@@ -267,147 +268,147 @@ return {
       function()
         Snacks.picker.registers()
       end,
-      desc = "Registers",
+      desc = desc("Registers"),
     },
     {
       "<leader>s/",
       function()
         Snacks.picker.search_history()
       end,
-      desc = "Search History",
+      desc = desc("Search History"),
     },
     {
       "<leader>sa",
       function()
         Snacks.picker.autocmds()
       end,
-      desc = "Autocmds",
+      desc = desc("Autocmds"),
     },
     {
       "<leader>sb",
       function()
         Snacks.picker.lines()
       end,
-      desc = "Buffer Lines",
+      desc = desc("Buffer Lines"),
     },
     {
       "<leader>sc",
       function()
         Snacks.picker.command_history()
       end,
-      desc = "Command History",
+      desc = desc("Command History"),
     },
     {
       "<leader>sC",
       function()
         Snacks.picker.commands()
       end,
-      desc = "Commands",
+      desc = desc("Commands"),
     },
     {
       "<leader>sd",
       function()
         Snacks.picker.diagnostics()
       end,
-      desc = "Diagnostics",
+      desc = desc("Diagnostics"),
     },
     {
       "<leader>sD",
       function()
         Snacks.picker.diagnostics_buffer()
       end,
-      desc = "Buffer Diagnostics",
+      desc = desc("Buffer Diagnostics"),
     },
     {
       "<leader>sh",
       function()
         Snacks.picker.help()
       end,
-      desc = "Help Pages",
+      desc = desc("Help Pages"),
     },
     {
       "<leader>sH",
       function()
         Snacks.picker.highlights()
       end,
-      desc = "Highlights",
+      desc = desc("Highlights"),
     },
     {
       "<leader>si",
       function()
         Snacks.picker.icons()
       end,
-      desc = "Icons",
+      desc = desc("Icons"),
     },
     {
       "<leader>sj",
       function()
         Snacks.picker.jumps()
       end,
-      desc = "Jumps",
+      desc = desc("Jumps"),
     },
     {
       "<leader>sk",
       function()
         Snacks.picker.keymaps()
       end,
-      desc = "Keymaps",
+      desc = desc("Keymaps"),
     },
     {
       "<leader>sl",
       function()
         Snacks.picker.loclist()
       end,
-      desc = "Location List",
+      desc = desc("Location List"),
     },
     {
       "<leader>sm",
       function()
         Snacks.picker.marks()
       end,
-      desc = "Marks",
+      desc = desc("Marks"),
     },
     {
       "<leader>sM",
       function()
         Snacks.picker.man()
       end,
-      desc = "Man Pages",
+      desc = desc("Man Pages"),
     },
     {
       "<leader>sp",
       function()
         Snacks.picker.lazy()
       end,
-      desc = "Search for Plugin Spec",
+      desc = desc("Search for Plugin Spec"),
     },
     {
       "<leader>sq",
       function()
         Snacks.picker.qflist()
       end,
-      desc = "Quickfix List",
+      desc = desc("Quickfix List"),
     },
     {
       "<leader>sR",
       function()
         Snacks.picker.resume()
       end,
-      desc = "Resume",
+      desc = desc("Resume"),
     },
     {
       "<leader>su",
       function()
         Snacks.picker.undo()
       end,
-      desc = "Undo History",
+      desc = desc("Undo History"),
     },
     {
       "<leader>uC",
       function()
         Snacks.picker.colorschemes()
       end,
-      desc = "Colorschemes",
+      desc = desc("Colorschemes"),
     },
     -- LSP
     {
@@ -415,14 +416,14 @@ return {
       function()
         Snacks.picker.lsp_definitions()
       end,
-      desc = "Goto Definition",
+      desc = desc("Goto Definition"),
     },
     {
       "gD",
       function()
         Snacks.picker.lsp_declarations()
       end,
-      desc = "Goto Declaration",
+      desc = desc("Goto Declaration"),
     },
     {
       "gr",
@@ -430,35 +431,35 @@ return {
         Snacks.picker.lsp_references()
       end,
       nowait = true,
-      desc = "References",
+      desc = desc("References"),
     },
     {
       "gI",
       function()
         Snacks.picker.lsp_implementations()
       end,
-      desc = "Goto Implementation",
+      desc = desc("Goto Implementation"),
     },
     {
       "gy",
       function()
         Snacks.picker.lsp_type_definitions()
       end,
-      desc = "Goto T[y]pe Definition",
+      desc = desc("Goto T[y]pe Definition"),
     },
     {
       "<leader>ss",
       function()
         Snacks.picker.lsp_symbols()
       end,
-      desc = "LSP Symbols",
+      desc = desc("LSP Symbols"),
     },
     {
       "<leader>sS",
       function()
         Snacks.picker.lsp_workspace_symbols()
       end,
-      desc = "LSP Workspace Symbols",
+      desc = desc("LSP Workspace Symbols"),
     },
     -- Other
     {
@@ -466,56 +467,56 @@ return {
       function()
         Snacks.zen()
       end,
-      desc = "Toggle Zen Mode",
+      desc = desc("Toggle Zen Mode"),
     },
     {
       "<leader>Z",
       function()
         Snacks.zen.zoom()
       end,
-      desc = "Toggle Zoom",
+      desc = desc("Toggle Zoom"),
     },
     {
       "<leader>.",
       function()
         Snacks.scratch()
       end,
-      desc = "Toggle Scratch Buffer",
+      desc = desc("Toggle Scratch Buffer"),
     },
     {
       "<leader>S",
       function()
         Snacks.scratch.select()
       end,
-      desc = "Select Scratch Buffer",
+      desc = desc("Select Scratch Buffer"),
     },
     {
       "<leader>n",
       function()
         Snacks.notifier.show_history()
       end,
-      desc = "Notification History",
+      desc = desc("Notification History"),
     },
     {
       "<leader>bd",
       function()
         Snacks.bufdelete()
       end,
-      desc = "Delete Buffer",
+      desc = desc("Delete Buffer"),
     },
     {
       "<leader>cR",
       function()
         Snacks.rename.rename_file()
       end,
-      desc = "Rename File",
+      desc = desc("Rename File"),
     },
     {
       "<leader>gB",
       function()
         Snacks.gitbrowse()
       end,
-      desc = "Git Browse",
+      desc = desc("Git Browse"),
       mode = { "n", "v" },
     },
     {
@@ -523,35 +524,35 @@ return {
       function()
         Snacks.lazygit()
       end,
-      desc = "Lazygit",
+      desc = desc("Lazygit"),
     },
     {
       "<leader>un",
       function()
         Snacks.notifier.hide()
       end,
-      desc = "Dismiss All Notifications",
+      desc = desc("Dismiss All Notifications"),
     },
     {
       "<c-/>",
       function()
         Snacks.terminal()
       end,
-      desc = "Toggle Terminal",
+      desc = desc("Toggle Terminal"),
     },
     {
       "<c-_>",
       function()
         Snacks.terminal()
       end,
-      desc = "which_key_ignore",
+      desc = desc("which_key_ignore"),
     },
     {
       "]]",
       function()
         Snacks.words.jump(vim.v.count1)
       end,
-      desc = "Next Reference",
+      desc = desc("Next Reference"),
       mode = { "n", "t" },
     },
     {
@@ -559,7 +560,7 @@ return {
       function()
         Snacks.words.jump(-vim.v.count1)
       end,
-      desc = "Prev Reference",
+      desc = desc("Prev Reference"),
       mode = { "n", "t" },
     },
   },

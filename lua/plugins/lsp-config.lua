@@ -16,13 +16,13 @@ return {
   },
   {
     "mason-org/mason-lspconfig.nvim",
+    enabled = not vim.g.vscode,
     opts = {
       automatic_enable = true,
       ensure_installed = {
         "lua_ls",
         "docker_language_server",
         "eslint",
-        "golangci_lint_ls",
         "gopls",
         "harper_ls",
         "jsonls",
@@ -157,7 +157,6 @@ return {
     config = function()
       -- go install github.com/nametake/golangci-lint-langserver@latest
       -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      vim.lsp.enable("golangci_lint_ls")
       vim.lsp.enable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
       vim.lsp.enable("jsonls") -- npm i -g vscode-langservers-extracted
 
@@ -193,7 +192,7 @@ return {
       }
 
       -- config also enables the lsp
-      vim.lsp.config("go_ls", {
+      vim.lsp.config("gopls", {
         filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
         message_level = vim.lsp.protocol.MessageType.Error,
         cmd = {

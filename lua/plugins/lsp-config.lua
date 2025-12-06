@@ -157,31 +157,20 @@ return {
       },
     },
     config = function()
-      -- go install github.com/nametake/golangci-lint-langserver@latest
-      -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
       vim.lsp.enable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
       vim.lsp.enable("jsonls") -- npm i -g vscode-langservers-extracted
 
       vim.lsp.config["lua_ls"] = {
-        -- Command and arguments to start the server.
         cmd = { "lua-language-server" },
-        -- Filetypes to automatically attach to.
         filetypes = { "lua" },
-        -- Sets the "workspace" to the directory where any of these files is found.
-        -- Files that share a root directory will reuse the LSP server connection.
-        -- Nested lists indicate equal priority, see |vim.lsp.Config|.
         root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
-        -- Specific settings to send to the server. The schema is server-defined.
-        -- Example: https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json
         settings = {
           format = {
             enable = false,
           },
           diagnostics = {
-            -- Get the language server to recognize the `vim` global
             globals = { "vim", "require" },
           },
-          -- Do not send telemetry data containing a randomized but unique identifier
           telemetry = {
             enable = false,
           },
@@ -198,7 +187,7 @@ return {
         filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
         message_level = vim.lsp.protocol.MessageType.Error,
         cmd = {
-          "gopls", -- share the gopls instance if there is one already
+          "gopls",
           "-remote.debug=:0",
         },
         capabilities = {
@@ -248,12 +237,6 @@ return {
         },
       })
 
-      -- disable inline hint for golang
-      vim.keymap.set("n", "<leader>dh", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-        vim.notify("Toggled Go inline hints")
-      end, { desc = "Toggle Go inline hints" })
-
       vim.lsp.config("harper_ls", {
         settings = {
           ["harper-ls"] = {
@@ -265,6 +248,11 @@ return {
         },
       })
 
+      -- Code Display Hints
+      vim.keymap.set("n", "<leader>cdh", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        vim.notify("Toggled Go inline hints")
+      end, { desc = desc("Toggle Go inline hints") })
       -- LSP-friendly mappings (require LSP configured)
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = desc("Go to implementation") })
       vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = desc("Type definition") })

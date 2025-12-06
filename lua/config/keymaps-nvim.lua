@@ -42,13 +42,13 @@ vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 -- Easy find and replace.
 vim.keymap.set(
   { "v" },
-  "<leader>re",
+  "<leader>wre",
   '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
   { desc = "Open search and replace for currently selected text" }
 )
 vim.keymap.set(
   { "n" },
-  "<leader>re",
+  "<leader>wre",
   ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
 
   { desc = "Open search and replace for word under cursor" }

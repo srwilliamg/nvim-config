@@ -48,54 +48,17 @@ return {
     -- enabled = false,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
-      require("kanagawa").setup(opts)
+      require("kanagawa").setup({
+        theme = "wave",
+        background = {
+          dark = "dragon",
+          light = "wave",
+        },
+      })
     end,
     init = function()
+      vim.cmd("colorscheme kanagawa")
       require("kanagawa").load("wave")
-    end,
-  },
-  {
-    enabled = false,
-    -- enabled = not vim.g.vscode,
-    "thesimonho/kanagawa-paper.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      theme = "kanagawa-paper-ink", -- The theme variant to use. Options are "kanagawa-paper-ink" and "kanagawa-paper-mist".
-      transparent = false, -- Enable/disable setting a transparent background.
-      terminalColors = true, -- Enable/disable setting terminal colors (vim.g.terminal_color_*) used in the terminal.
-    },
-    config = function(_, opts)
-      require("kanagawa-paper").setup(opts)
-    end,
-    init = function()
-      vim.cmd.colorscheme("kanagawa-paper-ink")
-    end,
-  },
-  {
-    enabled = false,
-    -- enabled = not vim.g.vscode,
-    "eldritch-theme/eldritch.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "dark", -- "dark" or "light"
-      transparent = false, -- Enable/disable setting a transparent background.
-      terminalColors = true, -- Enable/disable setting terminal colors (vim.g.terminal_color_*) used in the terminal.
-      ---@param highlights Highlights
-      ---@param colors ColorScheme
-      on_colors = function(colors)
-        -- colors.bg = "#1e1e2e"
-        -- black bg
-        colors.bg = "#212337"
-        -- colors.fg = "#cdd6f4"
-      end,
-    },
-    config = function(_, opts)
-      require("eldritch").setup(opts)
-    end,
-    init = function()
-      vim.cmd([[colorscheme eldritch]])
     end,
   },
 }

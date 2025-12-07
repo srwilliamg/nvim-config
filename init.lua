@@ -33,6 +33,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
+-- MasonInstall bash-language-server bashls cspell delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls
+
 -- highlight_yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),

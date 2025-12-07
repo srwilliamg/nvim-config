@@ -10,6 +10,51 @@ return {
         opts = {},
       },
     },
+    config = function()
+      local dap = require("dap")
+      local local_debugger = vim.fn.expand("~/.local/share/nvim/js-debug/src/dapDebugServer.js")
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+          command = "node",
+          args = { local_debugger, "${port}" },
+        },
+      }
+      dap.configurations.javascript = {
+        {
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch file",
+          sourceMaps = true,
+          program = "${file}",
+          protocol = "inspector",
+          cwd = vim.fn.getcwd(), -- Use current working directory
+          skipFiles = {
+            "<node_internals>/**",
+            "node_modules/**",
+          },
+        },
+      }
+      dap.configurations.typescript = {
+        {
+          runtimeExecutable = "npx",
+          runtimeArgs = { "ts-node" },
+          type = "pwa-node",
+          request = "launch",
+          name = "Launch TypeScript file",
+          program = "${file}",
+          cwd = vim.fn.getcwd(), -- Use current working directory
+          skipFiles = {
+            "<node_internals>/**",
+            "node_modules/**",
+          },
+          sourceMaps = true,
+        },
+      }
+      dap.set_log_level("TRACE")
+    end,
     keys = {
       {
         "<leader>db",
@@ -166,51 +211,6 @@ return {
         { desc = "Debug: Toggle Breakpoint" },
       },
     },
-    config = function()
-      local dap = require("dap")
-      local local_debugger = vim.fn.expand("~/.local/share/nvim/js-debug/src/dapDebugServer.js")
-      dap.adapters["pwa-node"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          args = { local_debugger, "${port}" },
-        },
-      }
-      dap.configurations.javascript = {
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch file",
-          sourceMaps = true,
-          program = "${file}",
-          protocol = "inspector",
-          cwd = vim.fn.getcwd(), -- Use current working directory
-          skipFiles = {
-            "<node_internals>/**",
-            "node_modules/**",
-          },
-        },
-      }
-      dap.configurations.typescript = {
-        {
-          runtimeExecutable = "npx",
-          runtimeArgs = { "ts-node" },
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch TypeScript file",
-          program = "${file}",
-          cwd = vim.fn.getcwd(), -- Use current working directory
-          skipFiles = {
-            "<node_internals>/**",
-            "node_modules/**",
-          },
-          sourceMaps = true,
-        },
-      }
-      dap.set_log_level("TRACE")
-    end,
   },
 
   {
@@ -282,7 +282,6 @@ return {
       end
     end,
   },
-
   {
     "jay-babu/mason-nvim-dap.nvim",
     enabled = not vim.g.vscode,

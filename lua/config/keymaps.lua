@@ -35,7 +35,7 @@ keymap("v", "K", ":m .-2<CR>==", opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- removes highlighting after escaping vim search
+-- Removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 --  shortcut to beginning of line

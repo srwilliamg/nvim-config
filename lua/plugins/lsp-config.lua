@@ -26,7 +26,6 @@ return {
         "docker_language_server",
         "eslint",
         "gopls",
-        "harper_ls",
         "jsonls",
         "stylua",
         "ts_ls",
@@ -233,17 +232,6 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
-          },
-        },
-      })
-
-      vim.lsp.config("harper_ls", {
-        settings = {
-          ["harper-ls"] = {
-            linters = {
-              SentenceCapitalization = false,
-              SpellCheck = false,
-            },
           },
         },
       })

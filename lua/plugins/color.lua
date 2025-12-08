@@ -44,8 +44,8 @@ return {
     },
   },
   {
-    enabled = not vim.g.vscode,
-    -- enabled = false,
+    -- enabled = not vim.g.vscode,
+    enabled = false,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require("kanagawa").setup({
@@ -59,6 +59,17 @@ return {
     init = function()
       vim.cmd("colorscheme kanagawa")
       require("kanagawa").load("wave")
+    end,
+  },
+  -- Using Lazy
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("onedark").setup({
+        style = "warmer",
+      })
+      require("onedark").load()
     end,
   },
 }

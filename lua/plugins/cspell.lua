@@ -1,4 +1,5 @@
 return {
+  enabled = not vim.g.vscode,
   "nvimtools/none-ls.nvim",
   dependencies = "davidmh/cspell.nvim",
   -- build = "npm install -g cspell@latest",

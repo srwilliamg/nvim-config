@@ -44,8 +44,8 @@ return {
     },
   },
   {
-    -- enabled = not vim.g.vscode,
-    enabled = false,
+    enabled = not vim.g.vscode,
+    -- enabled = false,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require("kanagawa").setup({
@@ -69,7 +69,7 @@ return {
       require("onedark").setup({
         style = "warmer",
       })
-      require("onedark").load()
+      -- require("onedark").load()
     end,
   },
 }

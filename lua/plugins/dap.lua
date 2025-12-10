@@ -240,16 +240,16 @@ return {
           elements = {
             { id = "scopes", size = 0.25 },
             { id = "breakpoints", size = 0.25 },
-            { id = "stacks", size = 0.25 },
-            { id = "watches", size = 0.25 },
+            { id = "stacks", size = 0.35 },
+            { id = "watches", size = 0.15 },
           },
           size = 40,
           position = "left",
         },
         {
           elements = {
-            { id = "repl", size = 0.5 },
-            { id = "console", size = 0.5 },
+            { id = "repl", size = 1 },
+            { id = "console", size = 0 },
           },
           size = 10,
           position = "bottom",
@@ -305,7 +305,7 @@ return {
                 return vim.split(vim.fn.input("args> "), " ")
               end,
               type = "delve",
-              name = "file",
+              name = "Debug file",
               request = "launch",
               program = "${file}",
               outputMode = "remote",
@@ -315,9 +315,9 @@ return {
                 return vim.split(vim.fn.input("args> "), " ")
               end,
               type = "delve",
-              name = "file args",
+              name = "Run project",
               request = "launch",
-              program = "${file}",
+              program = "${workspaceFolder}/bin/cmd/main.go",
               outputMode = "remote",
             })
             require("mason-nvim-dap").default_setup(config)

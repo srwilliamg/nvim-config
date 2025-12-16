@@ -221,6 +221,7 @@ return {
       {
         "<leader>du",
         function()
+          Snacks.explorer()
           require("dapui").toggle({})
         end,
         desc = "Dap UI",
@@ -238,10 +239,10 @@ return {
       layouts = {
         {
           elements = {
-            { id = "scopes", size = 0.25 },
+            { id = "scopes", size = 0.5 },
             { id = "breakpoints", size = 0.25 },
-            { id = "stacks", size = 0.35 },
-            { id = "watches", size = 0.15 },
+            { id = "stacks", size = 0.25 },
+            { id = "watches", size = 0.25 },
           },
           size = 40,
           position = "left",
@@ -256,8 +257,8 @@ return {
         },
       },
       floating = {
-        max_height = 0.9,
-        max_width = 0.9,
+        max_height = 1,
+        max_width = 1,
       },
       controls = {
         enabled = true,
@@ -301,24 +302,25 @@ return {
           end,
           delve = function(config)
             table.insert(config.configurations, 1, {
-              args = function()
-                return vim.split(vim.fn.input("args> "), " ")
-              end,
+              -- args = function()
+              --   return vim.split(vim.fn.input("args> "), " ")
+              -- end,
               type = "delve",
-              name = "Debug file",
+              name = "Run: cmd/api/main",
               request = "launch",
-              program = "${file}",
+              program = "${workspaceFolder}/cmd/api/main.go",
+              envFile = "${workspaceFolder}/.env",
               outputMode = "remote",
+              console = "internalConsole",
             })
             table.insert(config.configurations, 1, {
-              args = function()
-                return vim.split(vim.fn.input("args> "), " ")
-              end,
               type = "delve",
-              name = "Run project",
+              name = "Run: file",
               request = "launch",
-              program = "${workspaceFolder}/bin/cmd/main.go",
+              program = "${file}",
+              envFile = "${workspaceFolder}/.env",
               outputMode = "remote",
+              console = "internalConsole",
             })
             require("mason-nvim-dap").default_setup(config)
           end,

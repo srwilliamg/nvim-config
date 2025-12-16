@@ -7,7 +7,7 @@ return {
       dap_configurations = {
         {
           type = "go",
-          name = "Attach to Go Server",
+          name = "Run: ./main",
           request = "launch",
           program = "${workspaceFolder}/main.go",
           port = "${port}",
@@ -21,7 +21,7 @@ return {
         },
         {
           type = "go",
-          name = "Debug (Build Flags)",
+          name = "Run: file",
           request = "launch",
           program = "${file}",
           buildFlags = require("dap-go").get_build_flags,

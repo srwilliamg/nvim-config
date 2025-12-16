@@ -23,7 +23,16 @@ return {
   lazy = false,
   opts = {
     zen = {
-      center = false,
+      win = {
+        width = 0.8,
+        backdrop = {
+          transparent = false,
+        },
+      },
+      center = true,
+      toggles = {
+        dim = true,
+      },
     },
     bigfile = { enabled = true },
     dashboard = {

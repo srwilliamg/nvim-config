@@ -23,7 +23,6 @@ return {
       automatic_enable = true,
       ensure_installed = {
         "lua_ls",
-        "docker_language_server",
         "eslint",
         "gopls",
         "jsonls",
@@ -134,7 +133,6 @@ return {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
-            -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
           },
           buffer = { max_items = 5 },
@@ -156,7 +154,6 @@ return {
       },
     },
     config = function()
-      vim.lsp.enable("docker_language_server") -- go install github.com/docker/docker-language-server/cmd/docker-language-server@latest
       vim.lsp.enable("jsonls") -- npm i -g vscode-langservers-extracted
 
       vim.lsp.config["lua_ls"] = {

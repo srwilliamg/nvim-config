@@ -17,6 +17,16 @@ vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end)
 
+-- next error
+vim.keymap.set("n", "]e", function()
+  vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR })
+end)
+
+-- previous error
+vim.keymap.set("n", "[e", function()
+  vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR })
+end)
+
 -- resize
 vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
 vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)

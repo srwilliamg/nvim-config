@@ -1,4 +1,5 @@
 return {
+  enabled = not vim.g.vscode,
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   opts = {

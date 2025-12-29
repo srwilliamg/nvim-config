@@ -1,6 +1,5 @@
 return {
   {
-    -- enabled = not vim.g.vscode,
     enabled = false,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
@@ -45,7 +44,6 @@ return {
   },
   {
     enabled = not vim.g.vscode,
-    -- enabled = false,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require("kanagawa").setup({
@@ -63,6 +61,8 @@ return {
   },
   -- Using Lazy
   {
+
+    enabled = not vim.g.vscode,
     "navarasu/onedark.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()

@@ -75,9 +75,8 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 -- Allow exiting insert mode in terminal by hitting <ESC>
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Feed ESC in terminal mode using <C-\>
-vim.keymap.set("t", "<C-\\>", function()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-end, opts)
+vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-c><C-c>", "<C-c>")
 
 vim.api.nvim_create_autocmd("TermLeave", {
   desc = "Reload buffers when leaving terminal",

@@ -22,6 +22,13 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    terminal = {
+      win = {
+        wo = {
+          winbar = "",
+        },
+      },
+    },
     zen = {
       win = {
         width = 0.8,
@@ -547,6 +554,7 @@ return {
       function()
         Snacks.terminal()
       end,
+      mode = { "n", "t" },
       desc = desc("Toggle Terminal"),
     },
     {
@@ -555,6 +563,14 @@ return {
         Snacks.terminal()
       end,
       desc = desc("which_key_ignore"),
+    },
+    {
+      "<c-t>",
+      function()
+        Snacks.terminal.toggle()
+      end,
+      mode = { "n", "t" },
+      desc = "Toggle Terminal",
     },
     {
       "]]",

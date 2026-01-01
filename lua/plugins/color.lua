@@ -1,12 +1,12 @@
 return {
   {
-    enabled = false,
+    enabled = not vim.g.vscode,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
     init = function()
-      vim.cmd.colorscheme("gruvbox")
-      vim.o.background = "dark" -- or "light" for light mode
-      vim.cmd([[colorscheme gruvbox]])
+      -- vim.cmd.colorscheme("gruvbox")
+      -- vim.o.background = "dark" -- or "light" for light mode
+      -- vim.cmd([[colorscheme gruvbox]])
     end,
     config = function(_, opts)
       require("gruvbox").setup(opts)
@@ -59,9 +59,7 @@ return {
       require("kanagawa").load("wave")
     end,
   },
-  -- Using Lazy
   {
-
     enabled = not vim.g.vscode,
     "navarasu/onedark.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins

@@ -41,13 +41,13 @@ vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 
 -- fold current block
 -- toggle fold
--- keymap({ "n", "v" }, "za", vim.cmd.fold, opts)
+vim.keymap.set({ "n", "v" }, "za", vim.cmd.fold, opts)
 -- -- unfold current block
--- keymap({ "n", "v" }, "zm", vim.cmd.unfold, opts)
+vim.keymap.set({ "n", "v" }, "zm", vim.cmd.unfold, opts)
 -- -- fold all blocks
--- keymap({ "n", "v" }, "zR", vim.cmd.foldopen, opts)
+vim.keymap.set({ "n", "v" }, "zR", vim.cmd.foldopen, opts)
 -- -- unfold all blocks
--- keymap({ "n", "v" }, "zM", vim.cmd.foldclose, opts)
+vim.keymap.set({ "n", "v" }, "zM", vim.cmd.foldclose, opts)
 
 -- Easy find and replace.
 vim.keymap.set(

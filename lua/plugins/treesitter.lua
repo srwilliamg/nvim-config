@@ -25,6 +25,7 @@ return {
       "typescript",
       "vim",
       "xml",
+      "sql",
     },
     allow_vim_regex = { "go" },
   },

@@ -53,4 +53,4 @@ keymap("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
 keymap("n", "<leader>yf", ":let @+=expand('%:t')<cr>", { desc = "Copy relative path" })
 
 keymap("n", "<leader>q", ":q!<cr>", { desc = "Exit" })
-keymap("n", "<leader>qa", ":wqa!<cr>", { desc = "Quit" })
+keymap("n", "<leader>qa", ":qa!<cr>", { desc = "Quit" })

@@ -74,7 +74,7 @@ return {
         { section = "startup" },
       },
     },
-    explorer = { enabled = true },
+    explorer = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },
     ---@class snacks.notifier.Config
@@ -148,13 +148,13 @@ return {
       end,
       desc = desc("Notification History"),
     },
-    {
-      "<leader>e",
-      function()
-        Snacks.explorer()
-      end,
-      desc = desc("File Explorer"),
-    },
+    -- {
+    --   "<leader>e",
+    --   function()
+    --     Snacks.explorer()
+    --   end,
+    --   desc = desc("File Explorer"),
+    -- },
     -- find
     {
       "<leader>fb",

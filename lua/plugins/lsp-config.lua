@@ -29,6 +29,9 @@ return {
         "stylua",
         "ts_ls",
         "yamlls",
+        "sqlls",
+        "ts_ls",
+        "eslint",
 
         -- "delve",
         -- "go-debug-adapter",
@@ -54,8 +57,8 @@ return {
       "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons", -- Optional for file icons
       "onsails/lspkind.nvim", --optional icons
-      -- "giuxtaposition/blink-cmp-copilot",
       "L3MON4D3/LuaSnip",
+      -- "giuxtaposition/blink-cmp-copilot",
     },
     opts = {
       completion = {

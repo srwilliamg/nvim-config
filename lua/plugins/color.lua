@@ -1,6 +1,15 @@
 return {
   {
     enabled = not vim.g.vscode,
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    init = function()
+      vim.cmd("colorscheme cyberdream")
+    end,
+  },
+  {
+    enabled = not vim.g.vscode,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
     init = function()
@@ -55,8 +64,8 @@ return {
       })
     end,
     init = function()
-      vim.cmd("colorscheme kanagawa")
-      require("kanagawa").load("wave")
+      -- vim.cmd("colorscheme kanagawa")
+      -- require("kanagawa").load("wave")
     end,
   },
   {

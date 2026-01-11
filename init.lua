@@ -33,7 +33,7 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
--- MasonInstall bash-language-server bashls cspell delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls
+-- MasonInstall bash-language-server bashls delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls
 
 -- highlight_yank
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- restore cursor to file position in previous editing session
+-- Restore cursor to file position in previous editing session
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function(args)
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- no auto continue comments on new line
+-- No auto highlight continue comments on new line
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("no_auto_comment", {}),
   callback = function()

@@ -32,6 +32,7 @@ return {
         "sqlls",
         "ts_ls",
         "eslint",
+        "harper_ls",
 
         -- "delve",
         -- "go-debug-adapter",
@@ -181,7 +182,7 @@ return {
         },
       }
 
-      -- config also enables the lsp
+      -- config also enables the LSP
       vim.lsp.config("gopls", {
         filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
         message_level = vim.lsp.protocol.MessageType.Error,
@@ -232,6 +233,25 @@ return {
             },
             staticcheck = true,
             gofumpt = true,
+          },
+        },
+      })
+
+      vim.lsp.enable("harper_ls")
+      vim.lsp.config("harper_ls", {
+        settings = {
+          ["harper-ls"] = {
+            userDictPath = "~/.config/nvim/lua/resources/spell/user.txt",
+            workspaceDictPath = "~/.config/nvim/lua/resources/spell/ws.txt",
+            fileDictPath = "~/.config/nvim/lua/resources/spell/file.txt",
+            linters = {
+              SentenceCapitalization = false,
+              SpellCheck = true,
+            },
+            diagnosticSeverity = "hint", --information
+            isolateEnglish = false,
+            dialect = "American",
+            maxFileLength = 120000,
           },
         },
       })

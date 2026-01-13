@@ -221,7 +221,6 @@ return {
       {
         "<leader>du",
         function()
-          Snacks.explorer()
           require("dapui").toggle({})
         end,
         desc = "Dap UI",

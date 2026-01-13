@@ -10,7 +10,6 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     keys = {
-
       {
         mode = { "n" },
         "<leader>e",
@@ -18,5 +17,26 @@ return {
         desc = desc("File Explorer"),
       },
     },
+    config = function()
+      require("neo-tree").setup({
+        window = {
+          width = 70,
+        },
+        filesystem = {
+          follow_current_file = {
+            enabled = true, --This will find and focus the file in the active buffer every time
+            -- the current file is changed while the tree is open.
+            leave_dirs_open = false, --  false  closes auto expanded dirs, such as with  :Neotree reveal
+          },
+        },
+        buffers = {
+          follow_current_file = {
+            enabled = true, -- This will find and focus the file in the active buffer every time
+            -- the current file is changed while the tree is open.
+            leave_dirs_open = false, --  false  closes auto expanded dirs, such as with  :Neotree reveal
+          },
+        },
+      })
+    end,
   },
 }

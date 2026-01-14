@@ -16,6 +16,12 @@ return {
         "<cmd>Neotree toggle<CR>",
         desc = desc("File Explorer"),
       },
+      {
+        mode = { "n" },
+        "<leader>b",
+        "<cmd>Neotree buffers<CR>",
+        desc = desc("Buffers"),
+      },
     },
     config = function()
       require("neo-tree").setup({

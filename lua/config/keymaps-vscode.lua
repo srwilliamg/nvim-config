@@ -18,7 +18,7 @@ vim.keymap.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 vim.keymap.set(
   { "n", "v" },
-  "<leader>b",
+  "<leader>db",
   "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>",
   opts
 )

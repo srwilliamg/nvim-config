@@ -204,7 +204,7 @@ return {
         { desc = "Debug: Step Out" },
       },
       {
-        "<leader>b",
+        "<leader>db",
         function()
           require("dap").toggle_breakpoint()
         end,

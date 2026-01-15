@@ -20,7 +20,7 @@ return {
     "mason-org/mason-lspconfig.nvim",
     enabled = not vim.g.vscode,
     opts = {
-      automatic_enable = true,
+      automjtic_enable = true,
       ensure_installed = {
         "lua_ls",
         "eslint",
@@ -150,12 +150,10 @@ return {
             fileDictPath = "~/.config/nvim/lua/resources/spell/file.txt",
             linters = {
               SentenceCapitalization = false,
-              SpellCheck = true,
+              SpellCheck = false,
+              LongSentences = false,
             },
             diagnosticSeverity = "hint", --information
-            isolateEnglish = false,
-            dialect = "American",
-            maxFileLength = 120000,
           },
         },
       })

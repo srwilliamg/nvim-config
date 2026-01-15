@@ -27,7 +27,7 @@ return {
       "xml",
       "sql",
     },
-    allow_vim_regex = { "go" },
+    allow_vim_regex = { "markdown" },
   },
   config = function(_, opts)
     local parsers_loaded = {}
@@ -40,6 +40,7 @@ return {
     local function start(lang)
       local ok = pcall(vim.treesitter.start, 0, lang)
       if not ok then
+        vim.notify("Parser not found for " .. lang, vim.log.levels.WARN)
         return false
       end
 

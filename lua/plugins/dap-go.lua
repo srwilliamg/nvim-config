@@ -12,6 +12,7 @@ return {
           program = "${workspaceFolder}/main.go",
           port = "${port}",
           console = "integratedTerminal",
+          envFile = "${workspaceFolder}/.env",
           outputMode = "remote",
           dlvFlags = {
             "--log",
@@ -26,6 +27,7 @@ return {
           program = "${file}",
           buildFlags = require("dap-go").get_build_flags,
           console = "integratedTerminal",
+          envFile = "${workspaceFolder}/.env",
           outputMode = "remote",
           dlvFlags = {
             "--log",

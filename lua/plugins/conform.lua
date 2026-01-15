@@ -13,6 +13,18 @@ return {
       jsx = { "prettierd", "prettier", stop_after_first = true },
       yaml = { "prettierd" }, -- or "yamlfmt"
       conf = { "prettierd" },
+      sql = { "sqlfluff" },
+      pgsql = { "sqlfluff" },
+    },
+    formatters = {
+      sqlfluff = {
+        command = "sqlfluff",
+        args = { "format", "--dialect=postgres", "-" },
+        stdin = true,
+        cwd = function()
+          return vim.fn.getcwd()
+        end,
+      },
     },
     format_on_save = {
       -- These options will be passed to conform.format()

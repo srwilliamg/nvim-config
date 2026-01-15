@@ -1,11 +1,9 @@
 return {
   "pwntester/octo.nvim",
-  enabled = false, --not vim.g.vscode,
+  enabled = not vim.g.vscode,
   cmd = "Octo",
   opts = {
-    -- or "fzf-lua" or "snacks" or "default"
     picker = "snacks",
-    -- bare Octo command opens picker of commands
     enable_builtin = true,
   },
   keys = {

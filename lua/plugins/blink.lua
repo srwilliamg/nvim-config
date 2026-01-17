@@ -5,7 +5,6 @@ return {
   dependencies = {
     "rafamadriz/friendly-snippets",
     "nvim-tree/nvim-web-devicons", -- Optional for file icons
-    "onsails/lspkind.nvim", --optional icons
     { "L3MON4D3/LuaSnip", version = "v2.*" },
     -- "giuxtaposition/blink-cmp-copilot",
   },
@@ -38,26 +37,6 @@ return {
             { "kind_icon" },
             { "label" },
             { "source_name" },
-          },
-          components = {
-            kind_icon = {
-              ellipsis = false,
-              text = function(ctx)
-                local icon = ctx.kind_icon
-                if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                  local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-                  if dev_icon then
-                    icon = dev_icon
-                  end
-                else
-                  icon = require("lspkind").symbolic(ctx.kind, {
-                    mode = "symbol",
-                  })
-                end
-
-                return icon .. ctx.icon_gap
-              end,
-            },
           },
         },
       },
@@ -110,7 +89,7 @@ return {
             end, items)
           end,
           async = true, -- Show partial results while waiting for all providers.
-          timeout_ms = 200, -- Maximum time to wait before showing partial results.
+          timeout_ms = 100, -- Maximum time to wait before showing partial results.
           min_keyword_length = 0, -- Minimum characters that trigger the provider.
         },
         lazydev = {
@@ -120,7 +99,6 @@ return {
         },
         buffer = { max_items = 5 },
       },
-
       default = { "lsp", "path", "snippets", "buffer", "cmdline", "lazydev" },
     },
     init = function()

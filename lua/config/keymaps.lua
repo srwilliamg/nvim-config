@@ -39,7 +39,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 --  shortcut to beginning of line
-keymap("n", "gs", "^", opts)
+-- keymap("n", "gs", "^", opts)
 -- format
 keymap("n", "<leader>f", function()
   vim.lsp.buf.format({ async = true })

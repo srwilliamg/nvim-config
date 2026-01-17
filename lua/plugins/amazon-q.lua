@@ -1,6 +1,7 @@
 local desc = Utils.plugin_keymap_desc("AmazonQ")
 return {
   {
+    enabled = false,
     name = "amazonq",
     url = "https://github.com/awslabs/amazonq.nvim.git",
     opts = {
@@ -11,6 +12,11 @@ return {
       -- See: https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/q-language-ide-support.html
       -- `amazonq` is required for Q Chat feature.
       filetypes = {
+        "markdown",
+        "md",
+        "yaml",
+        "yml",
+        "json",
         "amazonq",
         "bash",
         "java",
@@ -38,17 +44,17 @@ return {
       },
       {
         "<leader>ae",
-        "<CMD>AmazonQ explain<CR>",
+        "<CMD>'<,'>AmazonQ explain<CR>",
         desc = desc("Explain"),
       },
       {
         "<leader>af",
-        "<CMD>AmazonQ fix<CR>",
+        "<CMD>'<,'>AmazonQ fix<CR>",
         desc = desc("Fix"),
       },
       {
         "<leader>ao",
-        "<CMD>AmazonQ optimize<CR>",
+        "<CMD>'<,'>AmazonQ optimize<CR>",
         desc = desc("Optimize"),
       },
     },

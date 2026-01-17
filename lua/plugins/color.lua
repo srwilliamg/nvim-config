@@ -1,6 +1,31 @@
 return {
   {
-    enabled = not vim.g.vscode,
+    "rebelot/kanagawa.nvim",
+    config = function(_, opts)
+      require("kanagawa").setup({
+        theme = "wave",
+        background = {
+          dark = "dragon",
+          light = "wave",
+        },
+      })
+    end,
+    init = function()
+      vim.cmd("colorscheme kanagawa-wave")
+    end,
+  },
+
+  {
+    enabled = false, --
+    "https://gitlab.com/motaz-shokry/gruvbox.nvim",
+    name = "new-gruvbox",
+    priority = 1000,
+    config = function()
+      -- vim.cmd("colorscheme gruvbox-hard")
+    end,
+  },
+  {
+    enabled = false, --  not vim.g.vscode,
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
@@ -9,7 +34,7 @@ return {
     end,
   },
   {
-    enabled = not vim.g.vscode,
+    enabled = false, --  not vim.g.vscode,
     "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
     init = function()
@@ -52,24 +77,7 @@ return {
     },
   },
   {
-    enabled = not vim.g.vscode,
-    "rebelot/kanagawa.nvim",
-    config = function(_, opts)
-      require("kanagawa").setup({
-        theme = "wave",
-        background = {
-          dark = "dragon",
-          light = "wave",
-        },
-      })
-    end,
-    init = function()
-      -- vim.cmd("colorscheme kanagawa")
-      require("kanagawa").load("wave")
-    end,
-  },
-  {
-    enabled = not vim.g.vscode,
+    enabled = false,
     "navarasu/onedark.nvim",
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()

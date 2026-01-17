@@ -4,11 +4,12 @@ local opts = { noremap = true, silent = true }
 -- Paste over selection without yanking replaced text
 keymap("v", "p", '"_dP', opts)
 
--- p using system clipboard
-keymap("v", "p", '"+p', opts)
-
--- y using system clipboard
-keymap("v", "y", '"+y', opts)
+-- disabled to learn the use of registers
+-- -- p using system clipboard
+-- keymap("v", "p", '"+p', opts)
+--
+-- -- y using system clipboard
+-- keymap("v", "y", '"+y', opts)
 
 -- Normal mode remove copy from X and V
 keymap("n", "x", '"_x', opts)
@@ -16,7 +17,7 @@ keymap("n", "X", '"_X', opts)
 keymap("n", "c", '"_c', opts)
 keymap("n", "C", '"_C', opts)
 
--- remove space default
+-- remove space default | important to keep blink key flow
 keymap("n", "<Space>", "", opts)
 
 -- yank to system clipboard
@@ -36,7 +37,7 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Removes highlighting after escaping vim search
-keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+-- keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 --  shortcut to beginning of line
 -- keymap("n", "gs", "^", opts)

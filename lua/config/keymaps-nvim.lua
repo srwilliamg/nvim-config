@@ -67,11 +67,6 @@ vim.keymap.set(
 -- Terminal mode escape to normal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 
--- Goto previous buffer
--- vim.keymap.set({ "n", "v" }, "ga", "<C-^>", { desc = "Goto previous buffer" })
--- Goto next buffer
--- vim.keymap.set({ "n", "v" }, "gn", ":bnext<CR>", { desc = "Goto next buffer" })
-
 -- Allow exiting insert mode in terminal by hitting <ESC>
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Feed ESC in terminal mode using <C-\>

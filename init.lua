@@ -33,7 +33,12 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
--- MasonInstall bash-language-server bashls delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls
+vim.api.nvim_create_user_command("InstallAllLocal", function()
+  vim.cmd(
+    "MasonInstall prettier bash-language-server bashls delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls"
+  )
+  vim.cmd("TSInstall markdown markdown_inline html latex typst yaml")
+end, {})
 
 -- highlight_yank
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -13,20 +13,24 @@ return {
       {
         mode = { "n" },
         "<leader>e",
-        "<cmd>Neotree toggle<CR>",
+        function()
+          vim.cmd("Neotree toggle")
+        end,
         desc = desc("File Explorer"),
       },
       {
         mode = { "n" },
-        "<leader>b",
+        "<leader>bl",
         "<cmd>Neotree buffers<CR>",
         desc = desc("Buffers"),
       },
     },
     config = function()
       require("neo-tree").setup({
+        enable_git_status = false,
         window = {
-          width = 60,
+          -- width = 30,
+          position = "float",
         },
         filesystem = {
           follow_current_file = {

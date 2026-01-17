@@ -79,27 +79,12 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     ---@class snacks.notifier.Config
-    notifier =
-      ---@field enabled? boolean
-      ---@field keep? fun(notif: snacks.notifier.Notif): boolean # global keep function
-      ---@field filter? fun(notif: snacks.notifier.Notif): boolean # filter our unwanted notifications (return false to hide)
-      {
-
-        border = true,
-
-        zindex = 100,
-        ft = "markdown",
-        wo = {
-          winblend = 5,
-          wrap = false,
-          conceallevel = 2,
-          colorcolumn = "",
-        },
-        bo = { filetype = "snacks_notif" },
-        style = "minimal",
-        width = { min = 40, max = 0.6 },
-        height = { min = 1, max = 0.6 },
-      },
+    notifier = {
+      timeout = 1000,
+      style = "minimal",
+      width = { min = 40, max = 0.6 },
+      height = { min = 1, max = 0.6 },
+    },
     picker = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
@@ -107,9 +92,18 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     styles = {
-      notification = {
-        -- wo = { wrap = true } -- Wrap notifications
-      },
+      -- notification = {
+      --   border = false,
+      --   zindex = 100,
+      --   ft = "markdown",
+      --   wo = {
+      --     winblend = 5,
+      --     wrap = false,
+      --     conceallevel = 2,
+      --     colorcolumn = "",
+      --   },
+      --   bo = { filetype = "snacks_notif" },
+      -- },
     },
   },
 -- stylua: ignore

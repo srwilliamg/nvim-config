@@ -7,6 +7,11 @@ return {
     end,
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
     "nvim-mini/mini.surround",
     version = false,
     opts = {

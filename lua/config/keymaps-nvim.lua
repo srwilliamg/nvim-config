@@ -72,11 +72,3 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Feed ESC in terminal mode using <C-\>
 vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-c><C-c>", "<C-c>")
-
-vim.api.nvim_create_autocmd("TermLeave", {
-  desc = "Reload buffers when leaving terminal",
-  pattern = "*",
-  callback = function()
-    vim.cmd.checktime()
-  end,
-})

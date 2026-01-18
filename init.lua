@@ -33,6 +33,36 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
+vim.diagnostic.config({
+  signs = {
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+    },
+    text = {
+      [vim.diagnostic.severity.ERROR] = "X",
+      [vim.diagnostic.severity.HINT] = "?",
+      [vim.diagnostic.severity.INFO] = "I",
+      [vim.diagnostic.severity.WARN] = "!",
+    },
+  },
+  update_in_insert = true,
+  virtual_text = false,
+  virtual_lines = {
+    current_line = true,
+  },
+})
+
+vim.api.nvim_create_autocmd("TermLeave", {
+  desc = "Reload buffers when leaving terminal",
+  pattern = "*",
+  callback = function()
+    vim.cmd.checktime()
+  end,
+})
+
 -- highlight_yank
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
@@ -79,7 +109,7 @@ vim.api.nvim_create_user_command("InstallAllLocal", function()
   vim.cmd(
     "MasonInstall prettier bash-language-server bashls delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls"
   )
-  vim.cmd("TSInstall markdown markdown_inline html latex typst yaml")
+  vim.cmd("TSInstall markdown markdown_inline html latex typst yaml go typescript bash")
 end, {})
 
 _G.Utils = require("utils")

@@ -99,7 +99,7 @@ return {
         },
         buffer = { max_items = 5 },
       },
-      default = { "lsp", "path", "snippets", "buffer", "cmdline", "lazydev" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer", "cmdline" },
     },
     init = function()
       vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {

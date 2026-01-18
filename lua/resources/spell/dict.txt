@@ -1,5 +1,12 @@
+ERROR
+HACK
+INFO
+LOG
 MasonInstall
 Maximo
+TODO
+WARN
+XXX
 bashls
 bson
 chan
@@ -15,6 +22,7 @@ eslint
 foldexpr
 folke
 gopls
+goroutines
 historyutils
 httpclients
 https
@@ -39,6 +47,7 @@ sindrets
 snapp
 sqlutils
 stretchr
+stylua
 subpaths
 testmock
 typescript

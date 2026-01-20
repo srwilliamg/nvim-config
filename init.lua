@@ -99,15 +99,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- syntax highlighting for dotenv files
-vim.api.nvim_create_autocmd("BufRead", {
-  group = vim.api.nvim_create_augroup("dotenv_ft", { clear = true }),
-  pattern = { ".env", ".env.*" },
-  callback = function()
-    vim.bo.filetype = "dosini"
-  end,
-})
-
 vim.api.nvim_create_user_command("InstallAllLocal", function()
   vim.cmd(
     "MasonInstall bash-language-server bashls delve docker-language-server docker_language_server eslint eslint-lsp go-debug-adapter gofumpt goimports golangci-lint gopls gotests harper_ls iferr json-lsp jsonls lua-language-server lua_ls markdownlint marksman prettier prettierd sqlfluff sqlls stylua ts_ls typescript-language-server yaml-language-server yamlls"

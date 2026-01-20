@@ -37,6 +37,16 @@ return {
     },
     keys = {
       {
+        "<leader>as",
+        "<CMD>AmazonQ start<CR>",
+        desc = desc("Start"),
+      },
+      {
+        "<leader>al",
+        "<CMD>AmazonQ login<CR>",
+        desc = desc("Login"),
+      },
+      {
         "<leader>aq",
         "<CMD>AmazonQ toggle<CR>",
         desc = desc("Chat"),

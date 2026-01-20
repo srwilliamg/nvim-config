@@ -1,4 +1,5 @@
 return {
+  enabled = not vim.g.vscode,
   "shortcuts/no-neck-pain.nvim",
   version = "*",
   opts = {

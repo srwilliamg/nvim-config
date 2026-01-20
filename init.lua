@@ -1,3 +1,6 @@
+vim.opt.title = true
+vim.opt.titlestring = '%( %M%)%( (%{expand("%:~:h")})%)%a'
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.netrw_browse_split = 0
@@ -107,9 +110,8 @@ vim.api.nvim_create_autocmd("BufRead", {
 
 vim.api.nvim_create_user_command("InstallAllLocal", function()
   vim.cmd(
-    "MasonInstall prettier bash-language-server bashls delve docker-language-server docker_language_server eslint-lsp eslint gopls json-lsp jsonls lua-language-server lua_ls stylua typescript-language-server ts_ls yaml-language-server yamlls"
+    "MasonInstall bash-language-server bashls delve docker-language-server docker_language_server eslint eslint-lsp go-debug-adapter gofumpt goimports golangci-lint gopls gotests harper_ls iferr json-lsp jsonls lua-language-server lua_ls markdownlint marksman prettier prettierd sqlfluff sqlls stylua ts_ls typescript-language-server yaml-language-server yamlls"
   )
-  vim.cmd("TSInstall markdown markdown_inline html latex typst yaml go typescript bash")
 end, {})
 
 _G.Utils = require("utils")

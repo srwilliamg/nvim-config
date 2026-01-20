@@ -1,7 +1,7 @@
 local desc = Utils.plugin_keymap_desc("Markdown")
 return {
   {
-    enabled = false,
+    enabled = not vim.g.vscode,
     "OXY2DEV/markview.nvim",
     lazy = false,
     dependencies = { "saghen/blink.cmp" },
@@ -30,6 +30,7 @@ return {
     },
   },
   {
+    enabled = not vim.g.vscode,
     "brianhuster/live-preview.nvim",
     dependencies = {
       "folke/snacks.nvim",

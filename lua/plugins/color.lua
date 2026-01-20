@@ -1,5 +1,6 @@
 return {
   {
+    enabled = not vim.g.vscode,
     "rebelot/kanagawa.nvim",
     config = function(_, opts)
       require("kanagawa").setup({

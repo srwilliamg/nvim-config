@@ -1,4 +1,13 @@
 return {
+
+  {
+    "kepano/flexoki-neovim",
+    name = "flexoki",
+
+    init = function()
+      vim.cmd("colorscheme flexoki-dark")
+    end,
+  },
   {
     enabled = not vim.g.vscode,
     "rebelot/kanagawa.nvim",
@@ -12,7 +21,7 @@ return {
       })
     end,
     init = function()
-      vim.cmd("colorscheme kanagawa-wave")
+      -- vim.cmd("colorscheme kanagawa-wave")
     end,
   },
 

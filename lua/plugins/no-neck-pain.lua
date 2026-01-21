@@ -48,6 +48,13 @@ return {
       },
     },
     integrations = {
+      neotest = {
+        -- The position of the tree.
+        ---@type "right"
+        position = "right",
+        -- When `true`, if the tree was opened before enabling the plugin, we will reopen it.
+        reopen = true,
+      },
       NeoTree = {
         -- The position of the tree.
         ---@type "left"|"right"

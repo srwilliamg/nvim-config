@@ -122,6 +122,7 @@ keys = {
  -- Top Pickers & Explorer
  { "<leader><space>", function() Snacks.picker.smart() end,desc = desc("Smart Find Files"), },
  { "<leader>,",function() Snacks.picker.buffers() end, desc = desc("Buffers"), },
+ { "<leader>bl",function() Snacks.picker.buffers() end, desc = desc("Buffers"), },
  { "<leader>/",function() Snacks.picker.grep() end,desc = desc("Grep"), },
  { "<leader>:",function() Snacks.picker.command_history() end,desc = desc("Command History"), },
  { "<leader>n",function() Snacks.picker.notifications() end,desc = desc("Notification History"), },

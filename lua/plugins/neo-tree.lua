@@ -1,7 +1,7 @@
 local desc = Utils.plugin_keymap_desc("Neotree")
 return {
   {
-    enabled = not vim.g.vscode,
+    enabled = false,
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {

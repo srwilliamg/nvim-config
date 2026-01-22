@@ -34,13 +34,13 @@ return {
         enabled = true,
       },
       right = {
-        enabled = true,
-        scratchPad = {
-          -- set to `false` to
-          -- disable auto-saving
-          enabled = true,
-          pathToFile = "~/code/scratch-pad.md",
-        },
+        enabled = false,
+        -- scratchPad = {
+        --   -- set to `false` to
+        --   -- disable auto-saving
+        --   enabled = true,
+        --   pathToFile = "~/code/scratch-pad.md",
+        -- },
       },
 
       bo = {

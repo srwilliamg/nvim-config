@@ -5,7 +5,7 @@ return {
     name = "flexoki",
 
     init = function()
-      vim.cmd("colorscheme flexoki-dark")
+      -- vim.cmd("colorscheme flexoki-dark")
     end,
   },
   {
@@ -21,7 +21,7 @@ return {
       })
     end,
     init = function()
-      -- vim.cmd("colorscheme kanagawa-wave")
+      vim.cmd("colorscheme kanagawa-dragon")
     end,
   },
 

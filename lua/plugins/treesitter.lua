@@ -1,6 +1,6 @@
 return {
-  enabled = not vim.g.vscode,
   "nvim-treesitter/nvim-treesitter",
+  enabled = not vim.g.vscode,
   build = ":TSUpdate",
   opts = {
     ensure_install = {

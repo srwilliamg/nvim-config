@@ -133,12 +133,7 @@ keys = {
  { "<leader>ff",function() Snacks.picker.files() end,desc = desc("Find Files"), },
  { "<leader>fg",function() Snacks.picker.git_files() end,desc = desc("Find Git Files"), },
  { "<leader>fp",function() Snacks.picker.projects() end,desc = desc("Projects"), }, {
- "<leader>fr",
- function()
-Snacks.picker.recent()
- end,
- desc = desc("Recent"),
-},
+ "<leader>fr", function() Snacks.picker.recent() end, desc = desc("Recent"), },
  -- git
  { "<leader>gb", function() Snacks.picker.git_branches() end,desc = desc("Git Branches"), },
  { "<leader>gl", function() Snacks.picker.git_log() end,desc = desc("Git Log"), },

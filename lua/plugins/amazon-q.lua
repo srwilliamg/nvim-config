@@ -1,8 +1,8 @@
 local desc = Utils.plugin_keymap_desc("AmazonQ")
 return {
   {
-    enabled = false,
     name = "amazonq",
+    enabled = false,
     url = "https://github.com/awslabs/amazonq.nvim.git",
     opts = {
       inline_suggest = true,

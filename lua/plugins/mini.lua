@@ -1,22 +1,21 @@
 return {
   {
-
-    enabled = not vim.g.vscode,
     "nvim-mini/mini.pairs",
+    enabled = not vim.g.vscode,
     version = "*",
     config = function()
       require("mini.pairs").setup()
     end,
   },
   {
-    enabled = not vim.g.vscode,
     "folke/todo-comments.nvim",
+    enabled = not vim.g.vscode,
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
   },
   {
-    enabled = not vim.g.vscode,
     "nvim-mini/mini.surround",
+    enabled = not vim.g.vscode,
     version = false,
     opts = {
       mappings = {

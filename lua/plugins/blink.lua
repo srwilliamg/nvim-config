@@ -1,7 +1,9 @@
 return {
 
   {
+
     "L3MON4D3/LuaSnip",
+    enabled = not vim.g.vscode,
     version = "v2.*",
     build = "make install_jsregexp",
     config = function()
@@ -10,8 +12,8 @@ return {
   },
   {
     "saghen/blink.cmp",
-    version = "1.*",
     enabled = not vim.g.vscode,
+    version = "1.*",
     build = "cargo build --release",
     dependencies = {
       "rafamadriz/friendly-snippets",

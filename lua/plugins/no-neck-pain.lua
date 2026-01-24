@@ -1,6 +1,6 @@
 return {
-  enabled = not vim.g.vscode,
   "shortcuts/no-neck-pain.nvim",
+  enabled = not vim.g.vscode,
   version = "*",
   opts = {
     width = 160,
@@ -18,7 +18,7 @@ return {
       -- When `true`, enables the plugin when you enter a new Tab.
       -- note: it does not trigger if you come back to an existing tab, to prevent unwanted interfer with user's decisions.
       ---@type boolean
-      enableOnTabEnter = false,
+      enableOnTabEnter = true,
       -- When `true`, reloads the plugin configuration after a colorscheme change.
       ---@type boolean
       reloadOnColorSchemeChange = false,

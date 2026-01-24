@@ -2,8 +2,8 @@ return {
 
   {
     "kepano/flexoki-neovim",
+    enabled = false,
     name = "flexoki",
-
     init = function()
       -- vim.cmd("colorscheme flexoki-dark")
     end,
@@ -26,8 +26,8 @@ return {
   },
 
   {
-    enabled = false, --
     "https://gitlab.com/motaz-shokry/gruvbox.nvim",
+    enabled = false, --
     name = "new-gruvbox",
     priority = 1000,
     config = function()
@@ -35,8 +35,8 @@ return {
     end,
   },
   {
-    enabled = false, --  not vim.g.vscode,
     "scottmckendry/cyberdream.nvim",
+    enabled = false, --  not vim.g.vscode,
     lazy = false,
     priority = 1000,
     init = function()
@@ -44,8 +44,8 @@ return {
     end,
   },
   {
-    enabled = false, --  not vim.g.vscode,
     "ellisonleao/gruvbox.nvim",
+    enabled = false, --  not vim.g.vscode,
     name = "gruvbox",
     init = function()
       -- vim.cmd.colorscheme("gruvbox")
@@ -87,8 +87,8 @@ return {
     },
   },
   {
-    enabled = false,
     "navarasu/onedark.nvim",
+    enabled = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       require("onedark").setup({

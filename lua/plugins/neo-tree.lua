@@ -1,31 +1,15 @@
 local desc = Utils.plugin_keymap_desc("Neotree")
 return {
   {
-    enabled = false,
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = not vim.g.vscode,
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+      "nvim-tree/nvim-web-devicons",
     },
     lazy = false, -- neo-tree will lazily load itself
-    keys = {
-      {
-        mode = { "n" },
-        "<leader>e",
-        function()
-          vim.cmd("Neotree toggle")
-        end,
-        desc = desc("File Explorer"),
-      },
-      {
-        mode = { "n" },
-        "<leader>bl",
-        "<cmd>Neotree buffers<CR>",
-        desc = desc("Buffers"),
-      },
-    },
     config = function()
       require("neo-tree").setup({
         enable_git_status = false,
@@ -49,5 +33,10 @@ return {
         },
       })
     end,
+    -- stylua: ignore
+    keys = {
+      { mode = { "n" }, "<leader>e", function() vim.cmd("Neotree toggle") end, desc = desc("File Explorer"), },
+      { mode = { "n" }, "<leader>bl", "<cmd>Neotree buffers<CR>", desc = desc("Buffers"), },
+    },
   },
 }

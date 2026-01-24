@@ -82,6 +82,7 @@ nvim
 nvimtools
 opsheet
 parkops
+pathToFile
 pushtoreporting
 sawtooth
 sccr

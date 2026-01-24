@@ -76,8 +76,11 @@ local harperLspConfig = {
       workspaceDictPath = "~/.config/workspace-spelling.txt",
       linters = {
         SentenceCapitalization = false,
-        SpellCheck = true,
+        SpellCheck = false,
         LongSentences = false,
+        Matcher = false,
+        CorrectNumberSuffix = false,
+        Spaces = false,
       },
       diagnosticSeverity = "hint", --information
     },

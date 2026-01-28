@@ -2,7 +2,7 @@ local desc = Utils.plugin_keymap_desc("go.nvim")
 
 return {
   "ray-x/go.nvim",
-  enabled = not vim.g.vscode,
+  enabled = false, --not vim.g.vscode,
   dependencies = { -- optional packages
     "ray-x/guihua.lua",
     "neovim/nvim-lspconfig",
@@ -12,6 +12,8 @@ return {
 
     disable_defaults = false, -- true|false when true set false to all boolean settings and replace all tables
     remap_commands = {}, -- Vim commands to remap or disable, e.g. `{ GoFmt = "GoFormat", GoDoc = false }`
+    -- settings with {}; string will be set to ''. user need to setup ALL the settings
+    -- It is import to set ALL values in your own config if set value to true otherwise the plugin may not work
     go = "go", -- go command, can be go[default] or e.g. go1.18beta1
     goimports = "gopls", -- goimports command, can be gopls[default] or either goimports or golines if need to split long lines
     gofmt = "gopls", -- gofmt through gopls: alternative is gofumpt, goimports, golines, gofmt, etc
@@ -23,23 +25,53 @@ return {
     gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
     gotest_case_exact_match = true, -- true: run test with ^Testname$, false: run test with TestName
     comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. 󰟓       
-    icons = { breakpoint = "🧘", currentpos = "🏃" }, -- setup to `false` to disable icons setup
+    -- icons = { breakpoint = "🧘", currentpos = "🏃" }, -- setup to `false` to disable icons setup
     verbose = false, -- output loginf in messages
     lsp_semantic_highlights = false, -- use highlights from gopls, disable by default as gopls/nvim not compatible
-    lsp_cfg = false, -- true: use non-default gopls setup specified in go/lsp.lua
+    lsp_cfg = true, -- true: use non-default gopls setup specified in go/lsp.lua
+    -- false: do nothing
+    -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
+    -- lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
     lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+    -- false: do not set default gofmt in gopls format to gofumpt
     lsp_on_attach = nil, -- nil: use on_attach function defined in go/lsp.lua,
+    --      when lsp_cfg is true
+    -- if lsp_on_attach is a function: use this function as on_attach function for gopls
     lsp_keymaps = true, -- set to false to disable gopls/lsp keymap
     lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
+    -- function(bufnr)
+    --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
+    -- end
+    -- to setup a table of codelens
+
+    lint_prompt_style = "qflist",
+    lint_on_save = true,
     golangci_lint = {
-      default = "standard", -- set to one of { 'standard', 'fast', 'all', 'none' }
-      enable = { "govet", "ineffassign", "revive", "gosimple" }, -- linters to enable; empty by default
-      config = nil, -- set to a config file path
-      no_config = false, -- true: golangci-lint --no-config
+      config = "~/.golangci.yml", -- set to a config file path
+      no_config = true, -- true: golangci-lint --no-config
+      -- disable = {},     -- linters to disable empty by default, e.g. {'errcheck', 'staticcheck'}
+      -- enable = {},      -- linters to enable; empty by default, set to e.g. {'govet', 'ineffassign','revive', 'gosimple'}
+      -- enable_only = {}, -- linters to enable only; empty by default, set to e.g. {'govet', 'ineffassign','revive', 'gosimple'}
       severity = vim.diagnostic.severity.INFO, -- severity level of the diagnostics
     },
-    diagnostic = false, -- set to table to customize vim.diagnostic.config setup
+    diagnostic = true, -- set to table to customize vim.diagnostic.config setup
+    -- example setup:
+    -- diagnostic = {  -- set diagnostic to false to disable vim.diagnostic.config setup,
+    -- true: default nvim setup
+    -- hdlr = false, -- hook lsp diag handler and send diag to quickfix
+    -- underline = true,
+    -- virtual_text = { spacing = 2, prefix = '' }, -- virtual text setup
+    -- signs = {'', '', '', ''},  -- set to true to use default signs, an array of 4 to specify custom signs
+    -- update_in_insert = false,
+    -- },
+    -- set to false/nil: disable config gopls diagnostic
+
+    -- if you need to setup your ui for input and select, you can do it here
+    -- go_input = require('guihua.input').input -- set to vim.ui.input to disable guihua input
+    -- go_select = require('guihua.select').select -- vim.ui.select to disable guihua select
     lsp_document_formatting = true,
+    -- set to true: use gopls to format
+    -- false if you want to use other formatter tool(e.g. efm, nulls)
     lsp_inlay_hints = {
       enable = true, -- this is the only field apply to neovim > 0.10
     },
@@ -49,8 +81,11 @@ return {
     sign_priority = 5, -- change to a higher number to override other signs
     dap_debug = true, -- set to false to disable dap
     dap_debug_keymap = true, -- true: use keymap for debugger defined in go/dap.lua
+    -- false: do not use keymap in go/dap.lua.  you must define your own.
+    -- Windows: Use Visual Studio keymap
     dap_debug_gui = {}, -- bool|table put your dap-ui setup here set to false to disable
     dap_debug_vt = { enabled = true, enabled_commands = true, all_frames = true }, -- bool|table put your dap-virtual-text setup here set to false to disable
+
     dap_port = 38697, -- can be set to a number, if set to -1 go.nvim will pick up a random port
     dap_timeout = 15, --  see dap option initialize_timeout_sec = 15,
     dap_retries = 20, -- see dap option max_retries
@@ -60,15 +95,20 @@ return {
     test_runner = "go", -- one of {`go`,  `dlv`, `ginkgo`, `gotestsum`}
     verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
     run_in_floaterm = false, -- set to true to run in a float window. :GoTermClose closes the floatterm
+    -- float term recommend if you use gotestsum ginkgo with terminal color
+
     floaterm = { -- position
       posititon = "auto", -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
       width = 0.45, -- width of float window if not auto
       height = 0.98, -- height of float window if not auto
       title_colors = "nord", -- default to nord, one of {'nord', 'tokyo', 'dracula', 'rainbow', 'solarized ', 'monokai'}
+      -- can also set to a list of colors to define colors to choose from
+      -- e.g {'#D8DEE9', '#5E81AC', '#88C0D0', '#EBCB8B', '#A3BE8C', '#B48EAD'}
     },
-    trouble = false, -- true: use trouble to open quickfix
+    trouble = true, -- true: use trouble to open quickfix
     test_efm = false, -- errorfomat for quickfix, default mix mode, set to true will be efm only
-    luasnip = false, -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
+    luasnip = true, -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
+    --  Do not enable this if you already added the path, that will duplicate the entries
     on_jobstart = function(cmd)
       _ = cmd
     end, -- callback for stdout
@@ -86,6 +126,7 @@ return {
   },
   config = function(lp, opts)
     require("go").setup(opts)
+    --
     local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.go",
@@ -94,6 +135,11 @@ return {
       end,
       group = format_sync_grp,
     })
+    --
+    local gopls_cfg = require("go.lsp").config()
+    -- gopls_cfg.filetypes = { 'go', 'gomod'}, -- override settings
+    vim.lsp.config.gopls = gopls_cfg
+    vim.lsp.enable("gopls")
 
     vim.keymap.set("n", "<leader>gtc", ":GoTest -vn<CR>", { desc = desc("Run closest test") })
     vim.keymap.set("n", "<leader>gtf", ":GoTestFile -v<CR>", { desc = desc("Run tests in current file") })

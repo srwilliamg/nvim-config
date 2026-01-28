@@ -187,6 +187,8 @@ keys = {
  { "[[",function() Snacks.words.jump(-vim.v.count1) end,desc = desc("Prev Reference"),mode = { "n", "t" }, },
 },
   init = function()
+    -- disable animations
+    vim.g.snacks_animate = false
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()

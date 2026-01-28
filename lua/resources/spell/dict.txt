@@ -38,6 +38,7 @@ XXX
 anarcat
 anonymized
 args
+auto-saving
 backported
 backports
 bashls

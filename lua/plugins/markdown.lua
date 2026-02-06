@@ -32,6 +32,7 @@ return {
   {
     "brianhuster/live-preview.nvim",
     enabled = not vim.g.vscode,
+    lazy = true,
     dependencies = {
       "folke/snacks.nvim",
     },

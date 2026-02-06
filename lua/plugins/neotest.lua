@@ -72,16 +72,16 @@ return {
       { "<leader>tf", function() require("neotest").summary.open() require("neotest").run.run(vim.fn.expand("%")) end, desc = "[t]est run [f]ile", },
       { "<leader>tA", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "[t]est [A]ll files", },
       { "<leader>tS", function() require("neotest").run.run({ suite = true }) end, desc = "[t]est [S]uite", },
-      { "<leader>tn", function() require("neotest").summary.open() require("neotest").run.run() end, desc = "[t]est [n]earest", },
-      { "<leader>tl", function() require("neotest").summary.open() require("neotest").run.run_last() end, desc = "[t]est [l]ast", },
+      { "<leader>tn", function() require("neotest").summary.open() end, desc = "[t]est [n]earest", },
+      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "[t]est [l]ast", },
       { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "[t]est [s]ummary", },
       { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "[t]est [o]utput", },
       { "<leader>tO", function() require("neotest").summary.open() require("neotest").output_panel.open() end, desc = "[t]est [O]pen", },
       { "<leader>tt", function() require("neotest").summary.close() require("neotest").run.stop() end, desc = "[t]est [t]erminate", },
-      { "<leader>tc", function() require("neotest").summary.close() require("neotest").output_panel.close() require("neotest").run.stop() end, desc = "[t]est [c]lose", },
-      { "<leader>td", function() require("neotest").summary.open() require("neotest").run.run({ suite = false, strategy = "dap" }) end, desc = "Debug nearest test", },
+      { "<leader>tc", function() require("neotest").run.stop() require("neotest").summary.close() require("neotest").output_panel.close()  end, desc = "[t]est [c]lose", },
+      { "<leader>td", function() require("neotest").summary.close() require("neotest").run.run({ suite = false, strategy = "dap" }) end, desc = "Debug nearest test", },
       { "<leader>tD", function() 
-        require("neotest").summary.close() 
+        require("neotest").summary.close()
         require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" }) 
       end, desc = "Debug current file", },
       },

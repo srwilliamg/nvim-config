@@ -14,7 +14,8 @@ return {
     "saghen/blink.cmp",
     enabled = not vim.g.vscode,
     version = "1.*",
-    build = "cargo build --release",
+    -- to build locally and to not use prebuilt version
+    -- build = "cargo build --release",
     dependencies = {
       "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons",

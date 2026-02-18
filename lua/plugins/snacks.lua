@@ -85,7 +85,10 @@ return {
       width = { min = 40, max = 0.6 },
       height = { min = 1, max = 0.6 },
     },
-    picker = { enabled = true },
+    picker = { enabled = true, sources = {
+      explorer = { hidden = true },
+      grep = { hidden = true },
+    } },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },

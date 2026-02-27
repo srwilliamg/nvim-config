@@ -75,6 +75,7 @@ return {
         { section = "startup" },
       },
     },
+    scratch = { ft = "markdown" },
     explorer = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },

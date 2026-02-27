@@ -106,7 +106,7 @@ vim.api.nvim_create_user_command("InstallAllLocal", function()
   vim.cmd("TSInstallAll")
 end, {})
 
-autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
     local params = vim.lsp.util.make_range_params()

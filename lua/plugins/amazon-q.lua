@@ -38,7 +38,9 @@ return {
     keys = {
       {
         "<leader>as",
-        "<CMD>AmazonQ start<CR>",
+        function()
+          vim.lsp.start(require("amazonq.lsp").config)
+        end,
         desc = desc("Start"),
       },
       {
@@ -68,14 +70,8 @@ return {
       },
     },
     init = function()
-      vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-        group = vim.api.nvim_create_augroup("my.amazonq", { clear = true }),
-        callback = function(ev)
-          if vim.b.amazonq then
-            vim.cmd.startinsert()
-          end
-        end,
-      })
+      vim.lsp.start(require("amazonq.lsp").config)
+      vim.cmd("AmazonQ login")
 
       -- CTRL-q (insert-mode) manually triggers Amazon Q completion (inline suggestions).
       vim.keymap.set("i", "<C-q>", function()

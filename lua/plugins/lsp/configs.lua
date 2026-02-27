@@ -112,7 +112,7 @@ local goplsLspConfig = {
         useany = true,
       },
       staticcheck = true,
-      gofumpt = true,
+      -- gofumpt = true,
     },
   },
 }

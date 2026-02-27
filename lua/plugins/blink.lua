@@ -61,13 +61,13 @@ return {
       sources = {
         default = { "lazydev", "lsp", "snippets", "path", "buffer", "cmdline" },
         providers = {
-          lsp = {
-            name = "LSP",
-            module = "blink.cmp.sources.lsp",
-            enabled = true,
-            async = true,
-            timeout_ms = 100, -- Allow Amazon Q suggestions more time to arrive.
-          },
+          -- lsp = {
+          --   name = "LSP",
+          --   module = "blink.cmp.sources.lsp",
+          --   enabled = true,
+          --   async = true,
+          --   timeout_ms = 100, -- Allow Amazon Q suggestions more time to arrive.
+          -- },
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",

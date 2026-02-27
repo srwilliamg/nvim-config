@@ -75,9 +75,6 @@ return {
         { section = "startup" },
       },
     },
-    explorer = { enabled = false },
-    indent = { enabled = true },
-    input = { enabled = true },
     ---@class snacks.notifier.Config
     notifier = {
       timeout = 1000,
@@ -85,20 +82,14 @@ return {
       width = { min = 40, max = 0.6 },
       height = { min = 1, max = 0.6 },
     },
-    picker = { enabled = true, sources = {
-      explorer = { hidden = true },
-      grep = { hidden = true },
-    } },
+    explorer = { enabled = false },
+    indent = { enabled = true },
+    input = { enabled = false },
+    picker = { enabled = true, sources = { explorer = { hidden = true }, grep = { hidden = true } } },
     scratch = { ft = "markdown" },
-    gh = {
-      enabled = false,
-    },
-    gitbrowse = {
-      enabled = false,
-    },
-    image = {
-      enabled = false,
-    },
+    gh = { enabled = false },
+    gitbrowse = { enabled = false },
+    image = { enabled = false },
     statuscolumn = { enabled = false },
     scroll = { enabled = false },
     quickfile = { enabled = true },

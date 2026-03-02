@@ -1,1 +1,1 @@
-cp ./ghostty/ ~/.config/ghostty/config
+cp ./ghostty/config ~/.config/ghostty/config

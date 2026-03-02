@@ -1,13 +1,4 @@
 return {
-
-  {
-    "kepano/flexoki-neovim",
-    enabled = false,
-    name = "flexoki",
-    init = function()
-      -- vim.cmd("colorscheme flexoki-dark")
-    end,
-  },
   {
     enabled = not vim.g.vscode,
     "rebelot/kanagawa.nvim",
@@ -22,25 +13,6 @@ return {
     end,
     init = function()
       vim.cmd("colorscheme kanagawa-dragon")
-    end,
-  },
-
-  {
-    "https://gitlab.com/motaz-shokry/gruvbox.nvim",
-    enabled = false, --
-    name = "new-gruvbox",
-    priority = 1000,
-    config = function()
-      -- vim.cmd("colorscheme gruvbox-hard")
-    end,
-  },
-  {
-    "scottmckendry/cyberdream.nvim",
-    enabled = false, --  not vim.g.vscode,
-    lazy = false,
-    priority = 1000,
-    init = function()
-      -- "vim.cmd("colorscheme cyberdream")
     end,
   },
   {

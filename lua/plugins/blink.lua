@@ -76,7 +76,6 @@ return {
           buffer = { max_items = 5 },
           snippets = {
             opts = {
-              friendly_snippets = true, -- default
               extended_filetypes = {
                 markdown = { "jekyll" },
                 sh = { "shelldoc" },

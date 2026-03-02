@@ -106,6 +106,7 @@ vim.api.nvim_create_user_command("InstallAllLocal", function()
   vim.cmd("TSInstallAll")
 end, {})
 
+-- format and organize imports in go
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()

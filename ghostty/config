@@ -1,6 +1,6 @@
 keybind = alt+[=previous_tab
 keybind = alt+]=next_tab
 font-family = "0xProto Nerd Font Mono"
-font-size = 14
+font-size = 11
 window-inherit-working-directory = true
 working-directory = inherit

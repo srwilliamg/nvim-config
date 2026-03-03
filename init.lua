@@ -8,6 +8,10 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.neovide_scale_factor = 1
 
+-- nvim tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- vim.opts
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"

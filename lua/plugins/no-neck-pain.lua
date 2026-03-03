@@ -48,6 +48,14 @@ return {
       },
     },
     integrations = {
+      NvimTree = {
+        -- The position of the tree.
+        ---@type "left"|"right"
+        position = "left",
+        -- When `true`, if the tree was opened before enabling the plugin, we will reopen it.
+        ---@type boolean
+        reopen = true,
+      },
       neotest = {
         -- The position of the tree.
         ---@type "right"

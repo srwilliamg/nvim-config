@@ -1,15 +1,15 @@
 restore:
-	@sh ./libs-restore.sh
+	@sh ./scripts/libs-restore.sh
 
 backup:
-	@sh ./libs-backup.sh
+	@sh ./scripts/libs-backup.sh
 
 rm:
-	@sh ./libs-rm.sh
+	@sh ./scripts/libs-rm.sh
 
 set-ghostty:
-	@sh ./set-g-config.sh
+	@sh ./scripts/set-g-config.sh
 
 get-ghostty:
-	@sh ./get-g-config.sh
+	@sh ./scripts/get-g-config.sh
 

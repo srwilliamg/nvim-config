@@ -1,6 +1,27 @@
+# --- macOS behavior ---
+# Treat Option key as Alt on macOS
+macos-option-as-alt = true
+# Use non-native fullscreen (fast; no tab support)
+macos-non-native-fullscreen = true
+# Use a tab-integrated titlebar
+macos-titlebar-style = tabs
+# Do not restore window state on startup
+window-save-state = never
+
 keybind = alt+[=previous_tab
 keybind = alt+]=next_tab
 font-family = "0xProto Nerd Font Mono"
 font-size = 11
 window-inherit-working-directory = true
 working-directory = inherit
+
+bold-is-bright = true
+adjust-cell-height = 9%
+copy-on-select = clipboard
+
+# --- Shell integration & appearance ---
+# Enable zsh shell integration
+shell-integration = zsh
+# Disable shell integration cursor changes
+shell-integration-features = no-cursor
+

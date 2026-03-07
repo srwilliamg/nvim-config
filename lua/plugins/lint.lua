@@ -1,20 +1,22 @@
 return {
   "mfussenegger/nvim-lint",
   config = function()
-    require("lint").linters_by_ft = {
+    local nvimlint = require("lint")
+    nvimlint.linters_by_ft = {
       markdown = { "vale" },
       go = { "golangcilint" },
     }
 
     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+      pattern = "*.go",
       callback = function()
         -- try_lint without arguments runs the linters defined in `linters_by_ft`
         -- for the current filetype
-        require("lint").try_lint()
+        nvimlint.try_lint()
 
         -- You can call `try_lint` with a linter name or a list of names to always
         -- run specific linters, independent of the `linters_by_ft` configuration
-        require("lint").try_lint("golangcilint")
+        -- require("lint").try_lint("golangcilint")
       end,
     })
   end,

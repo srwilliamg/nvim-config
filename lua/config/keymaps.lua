@@ -4,13 +4,6 @@ local opts = { noremap = true, silent = true }
 -- Paste over selection without yanking replaced text
 keymap("v", "p", '"_dP', opts)
 
--- disabled to learn the use of registers
--- -- p using system clipboard
--- keymap("v", "p", '"+p', opts)
---
--- -- y using system clipboard
--- keymap("v", "y", '"+y', opts)
-
 -- Normal mode remove copy from X and V
 keymap("n", "x", '"_x', opts)
 keymap("n", "X", '"_X', opts)
@@ -20,11 +13,17 @@ keymap("n", "C", '"_C', opts)
 -- remove space default | important to keep blink key flow
 keymap("n", "<Space>", "", opts)
 
--- yank to system clipboard
+-- COPY/PASTE SYSTEM-CLIPBOARD
+-- yank to system clipboard using leader
 keymap({ "n", "v" }, "<leader>y", '"+y', opts)
-
--- paste from system clipboard
+-- paste from system clipboard using leader
 keymap({ "n", "v" }, "<leader>p", '"+p', opts)
+
+-- disabled to learn the use of registers
+-- -- p using system clipboard
+-- keymap("v", "p", '"+p', opts)
+-- -- y using system clipboard
+-- keymap("v", "y", '"+y', opts)
 
 -- better indent handling
 keymap("v", "<", "<gv", opts)
@@ -53,5 +52,6 @@ keymap("n", "<leader>yP", ":let @+=@%<cr>", { desc = "Copy absolute path" })
 --  file name
 keymap("n", "<leader>yf", ":let @+=expand('%:t')<cr>", { desc = "Copy relative path" })
 
+keymap("n", "<leader>wa", ":wa<cr>", { desc = "Save All" })
 keymap("n", "<leader>q", ":q!<cr>", { desc = "Exit" })
 keymap("n", "<leader>qa", ":qa!<cr>", { desc = "Quit" })

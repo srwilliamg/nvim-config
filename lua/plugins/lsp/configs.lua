@@ -104,6 +104,7 @@ local goplsLspConfig = {
         functionTypeParameters = true,
         parameterNames = true,
         rangeLoopVariables = true,
+        rangeVariableTypes = true,
       },
       analyses = {
         unusedparams = true,
@@ -112,7 +113,8 @@ local goplsLspConfig = {
         useany = true,
       },
       staticcheck = true,
-      -- gofumpt = true,
+      usePlaceholders = true,
+      gofumpt = true,
     },
   },
 }

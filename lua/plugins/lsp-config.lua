@@ -33,7 +33,7 @@ return {
         "sqlls",
         "ts_ls",
         "eslint",
-        "harper_ls",
+        -- "harper_ls",
       },
     },
     dependencies = {
@@ -53,7 +53,7 @@ return {
       -- config also enables the LSP
       vim.lsp.config("lua_ls", configs.lua)
       vim.lsp.config("gopls", configs.go)
-      vim.lsp.config("harper_ls", configs.harper)
+      -- vim.lsp.config("harper_ls", configs.harper)
 
       -- LSP
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = desc("Hover") })

@@ -61,6 +61,7 @@ vim.diagnostic.config({
   },
 })
 
+vim.lsp.inlay_hint.enable(true)
 _G.Utils = require("autocmds.initial")
 _G.Utils = require("utils")
 

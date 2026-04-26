@@ -1,8 +1,8 @@
 vim.pack.add({
-  Utils.gh("nvim-mini/mini.pairs"),
-  Utils.gh("nvim-mini/mini.surround"),
-  Utils.gh("folke/todo-comments.nvim"), -- depends on :"nvim-lua/plenary.nvim"
-  Utils.gh("chentoast/marks.nvim"),
+  Utils.github("nvim-mini/mini.pairs"),
+  Utils.github("nvim-mini/mini.surround"),
+  Utils.github("folke/todo-comments.nvim"), -- depends on :"nvim-lua/plenary.nvim"
+  Utils.github("chentoast/marks.nvim"),
 })
 
 require("marks").setup()

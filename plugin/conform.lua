@@ -1,5 +1,5 @@
 vim.pack.add({
-  Utils.gh("stevearc/conform.nvim"),
+  Utils.github("stevearc/conform.nvim"),
 })
 
 require("conform").setup({

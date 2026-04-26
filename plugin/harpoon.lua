@@ -1,8 +1,8 @@
 local desc = Utils.plugin_keymap_desc("harpoon")
 
 vim.pack.add({
-  Utils.gh("nvim-lua/plenary.nvim"),
-  { src = Utils.gh("ThePrimeagen/harpoon"), version = "0378a6c428a0bed6a2781d459d7943843f374bce" },
+  Utils.github("nvim-lua/plenary.nvim"),
+  { src = Utils.github("ThePrimeagen/harpoon"), version = "0378a6c428a0bed6a2781d459d7943843f374bce" },
 })
 
 local keys = {

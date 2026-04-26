@@ -2,10 +2,7 @@ local luaLspConfig = {
   on_init = function(client)
     if client.workspace_folders then
       local path = client.workspace_folders[1].name
-      if
-        path ~= vim.fn.stdpath("config")
-        and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
-      then
+      if path ~= vim.fn.stdpath("config") and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc")) then
         return
       end
     end
@@ -45,9 +42,6 @@ local luaLspConfig = {
   filetypes = { "lua" },
   root_markers = { { ".luarc.json", ".luarc.jsonc" }, ".git" },
   settings = {
-    format = {
-      enable = false,
-    },
     diagnostics = {
       globals = { "vim", "require" },
     },
@@ -55,6 +49,9 @@ local luaLspConfig = {
       enable = false,
     },
     Lua = {
+      format = {
+        enable = false,
+      },
       codeLens = {
         enable = true,
       },

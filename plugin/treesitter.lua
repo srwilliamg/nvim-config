@@ -1,33 +1,33 @@
 local ensure_installed = {
-    "asm",
-    "bash",
-    "c",
-    "cpp",
-    "css",
-    "go",
-    "gomod",
-    "gosum",
-    "html",
-    "java",
-    "javascript",
-    "json",
-    "latex",
-    "lua",
-    "luau",
-    "markdown",
-    "markdown_inline",
-    "python",
-    "sql",
-    "tsx",
-    "typescript",
-    "typst",
-    "vim",
-    "xml",
-    "yaml",
-  }
+  "asm",
+  "bash",
+  "c",
+  "cpp",
+  "css",
+  "go",
+  "gomod",
+  "gosum",
+  "html",
+  "java",
+  "javascript",
+  "json",
+  "latex",
+  "lua",
+  "luau",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "sql",
+  "tsx",
+  "typescript",
+  "typst",
+  "vim",
+  "xml",
+  "yaml",
+}
 
- local allow_vim_regex = { "markdown" }
- 
+local allow_vim_regex = { "markdown" }
+
 -- auto build on update
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(ev)
@@ -110,10 +110,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-
-
 vim.api.nvim_create_user_command("TSInstallAll", function()
-  require("nvim-treesitter").install(ensure_install)
+  require("nvim-treesitter").install(ensure_installed)
 end, {})
 
 require("nvim-treesitter").setup({

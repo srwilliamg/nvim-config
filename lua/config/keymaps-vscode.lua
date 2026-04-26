@@ -16,56 +16,21 @@ vim.keymap.set("n", "[d", "<cmd>lua require('vscode').action('editor.action.mark
 -- removes highlighting after escaping vim search
 vim.keymap.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>db",
-  "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader>db", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>d", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>", opts)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>sp",
-  "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>", opts)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>cp",
-  "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>fd",
-  "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>", opts)
 
 vim.keymap.set({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>", opts)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader><leader>",
-  "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>",
-  opts
-)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>fs",
-  "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader><leader>", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>", opts)
+vim.keymap.set({ "n", "v" }, "<leader>fs", "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>", opts)
 
 -- toggle sidebar
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>e",
-  "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>",
-  opts
-)
+vim.keymap.set({ "n", "v" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>", opts)
 
 -- fold current block
 vim.keymap.set({ "n", "v" }, "za", "<cmd>lua require('vscode').action('editor.fold')<CR>", opts)

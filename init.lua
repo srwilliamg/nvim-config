@@ -39,6 +39,23 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
+-- vim.pack.add({gh("rafamadriz/friendly-snippets")},
+--     {gh("nvim-tree/nvim-web-devicons")},
+--     -- "giuxtaposition/blink-cmp-copilot",
+--     {
+--         src = gh("L3MON4D3/LuaSnip"),
+--         version = vim.version.range("2.x") -- or vim.version.range('*') for latest
+--     }, {
+--         src = gh("saghen/blink.cmp"),
+--         version = vim.version.range("1.x") -- or vim.version.range('*') for latest
+--     },
+--     {gh("rebelot/kanagawa.nvim")},
+--     {gh("mason-org/mason.nvim")},
+--     {gh("neovim/nvim-lspconfig")},
+--     {gh("mason-org/mason-lspconfig.nvim")},
+--     {gh("folke/snacks.nvim")},
+--     {gh("nvim-treesitter/nvim-treesitter")})
+
 vim.diagnostic.config({
   signs = {
     numhl = {
@@ -66,7 +83,8 @@ _G.Utils = require("autocmds.initial")
 _G.Utils = require("utils")
 
 -- config Lazy
-require("config.lazy")
+
+-- vim.cmd("colorscheme kanagawa-dragon")
 require("config.keymaps")
 
 if vim.g.vscode then

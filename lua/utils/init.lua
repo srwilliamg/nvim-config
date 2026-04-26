@@ -1,5 +1,12 @@
 local M = {}
 
+function M.gh(x)
+    return 'https://github.com/' .. x
+end
+function M.cb(x)
+    return 'https://codeberg.org/' .. x
+end
+
 -- Merge two tables
 ---@param t1 table
 ---@param t2 table

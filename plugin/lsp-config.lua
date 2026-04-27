@@ -32,41 +32,44 @@ require("mason-lspconfig").setup({
 --     capabilities = vim.lsp.protocol.make_client_capabilities()
 -- })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function()
-    local configs = require("lsp.configs")
-    -- config also enables the LSP
-    vim.lsp.config("lua_ls", configs.lua)
-    vim.lsp.config("gopls", configs.go)
-    -- vim.lsp.config("harper_ls", configs.harper)
+require("lazyload").on_vim_enter(function()
+  local configs = require("lsp.configs")
+  -- config also enables the LSP
+  vim.lsp.config("lua_ls", configs.lua)
+  vim.lsp.config("gopls", configs.go)
+  -- vim.lsp.config("harper_ls", configs.harper)
 
-    -- LSP
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, {
-      desc = desc("Hover"),
-    })
-    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {
-      desc = desc("Rename"),
-    })
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
-      desc = desc("Code Action"),
-    })
-    vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, {
-      desc = desc("Run Codelens"),
-    })
-    vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, {
-      desc = desc("Refresh & Display Codelens"),
-    })
-    vim.keymap.set("n", "<leader>cR", function()
-      Snacks.rename.rename_file()
-    end, {
-      desc = desc("Rename File"),
-    })
+  -- LSP
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+    desc = desc("Hover"),
+  })
+  vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {
+    desc = desc("Rename"),
+  })
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
+    desc = desc("Code Action"),
+  })
+  vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, {
+    desc = desc("Run Codelens"),
+  })
+  vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, {
+    desc = desc("Refresh & Display Codelens"),
+  })
+  vim.keymap.set("n", "<leader>cR", function()
+    Snacks.rename.rename_file()
+  end, {
+    desc = desc("Rename File"),
+  })
 
-    -- Code Display Hints
-    vim.keymap.set("n", "<leader>cdh", function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      vim.notify("Toggled Go inline hints")
-    end)
-  end,
-  once = true,
-})
+  -- Code Display Hints
+  vim.keymap.set("n", "<leader>cdh", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    vim.notify("Toggled Go inline hints")
+  end)
+end)
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function()
+--   end,
+--   once = true,
+-- })

@@ -278,11 +278,17 @@ local initDAP = function()
   end, { desc = "Debug: Step Out" })
 end
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function()
-    initDAP()
-    initDapUI()
-    initMasonDAP()
-  end,
-  once = true,
-})
+require("lazyload").on_vim_enter(function()
+  initDAP()
+  initDapUI()
+  initMasonDAP()
+end)
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function()
+--     initDAP()
+--     initDapUI()
+--     initMasonDAP()
+--   end,
+--   once = true,
+-- })

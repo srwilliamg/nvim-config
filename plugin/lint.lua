@@ -1,20 +1,22 @@
-vim.pack.add({
-  { src = Utils.github("mfussenegger/nvim-lint"), name = "lint" },
-})
+require("lazyload").on_vim_enter(function()
+  vim.pack.add({
+    { src = Utils.github("mfussenegger/nvim-lint"), name = "lint" },
+  })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = "*.go",
-  callback = function()
-    require("lint").linters_by_ft = {
-      markdown = { "vale" },
-      go = { "golangcilint" },
-    }
-    -- try_lint without arguments runs the linters defined in `linters_by_ft`
-    -- for the current filetype
-    require("lint").try_lint()
+  vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = "*.go",
+    callback = function()
+      require("lint").linters_by_ft = {
+        markdown = { "vale" },
+        go = { "golangcilint" },
+      }
+      -- try_lint without arguments runs the linters defined in `linters_by_ft`
+      -- for the current filetype
+      require("lint").try_lint()
 
-    -- You can call `try_lint` with a linter name or a list of names to always
-    -- run specific linters, independent of the `linters_by_ft` configuration
-    -- require("lint").try_lint("golangcilint")
-  end,
-})
+      -- You can call `try_lint` with a linter name or a list of names to always
+      -- run specific linters, independent of the `linters_by_ft` configuration
+      -- require("lint").try_lint("golangcilint")
+    end,
+  })
+end)

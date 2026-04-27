@@ -1,120 +1,133 @@
-local ensure_installed = {
-  "asm",
-  "bash",
-  "c",
-  "cpp",
-  "css",
-  "go",
-  "gomod",
-  "gosum",
-  "html",
-  "java",
-  "javascript",
-  "json",
-  "latex",
-  "lua",
-  "luau",
-  "markdown",
-  "markdown_inline",
-  "python",
-  "sql",
-  "tsx",
-  "typescript",
-  "typst",
-  "vim",
-  "xml",
-  "yaml",
-}
+-- plugin/nvim_treesiter.lua
+require("lazyload").on_vim_enter(function()
+  vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+      if ev.data.spec.name == "nvim-treesitter" then
+        vim.cmd("TSUpdate")
+      end
+    end,
+  })
 
-local allow_vim_regex = { "markdown" }
+  local ensure_installed = {
+    "asm",
+    "bash",
+    "c",
+    "cpp",
+    "css",
+    "go",
+    "gomod",
+    "gosum",
+    "html",
+    "java",
+    "javascript",
+    "json",
+    "latex",
+    "lua",
+    "luau",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "sql",
+    "tsx",
+    "typescript",
+    "typst",
+    "vim",
+    "xml",
+    "yaml",
+  }
 
--- auto build on update
-vim.api.nvim_create_autocmd("PackChanged", {
-  callback = function(ev)
-    local name = ev.data.spec.name
-    if name == "nvim-treesitter" then
-      vim.cmd("TSUpdate")
-    end
-  end,
-})
+  local allow_vim_regex = { "markdown" }
 
-vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
+  -- auto build on update
+  vim.api.nvim_create_autocmd("PackChanged", {
+    callback = function(ev)
+      local name = ev.data.spec.name
+      if name == "nvim-treesitter" then
+        vim.cmd("TSUpdate")
+      end
+    end,
+  })
 
-local parsers_loaded = {}
-local parsers_pending = {}
-local parsers_failed = {}
+  vim.pack.add({
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
+  })
 
-local ns = vim.api.nvim_create_namespace("treesitter.start")
+  local parsers_loaded = {}
+  local parsers_pending = {}
+  local parsers_failed = {}
 
----@param lang string
-local function start(lang)
-  local ok = pcall(vim.treesitter.start, 0, lang)
-  if not ok then
-    vim.notify("Parser not found for " .. lang, vim.log.levels.WARN)
-    return false
-  end
+  local ns = vim.api.nvim_create_namespace("treesitter.start")
 
-  -- NOTE: not needed if indent actually worked for these languages without
-  -- vim regex or if treesitter indent was used
-  if vim.tbl_contains(allow_vim_regex, vim.bo.filetype) then
-    vim.bo.syntax = "on"
-  end
-
-  vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
-  -- NOTE: indent forces a re-parse, which negates the benefit of async
-  -- parsing see https://github.com/nvim-treesitter/nvim-treesitter/issues/7840
-  -- vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
-
-  return true
-end
-
--- NOTE: parsers may take long to load (big binary files) so try to start
--- them async in the next render if not loaded yet
-vim.api.nvim_set_decoration_provider(ns, {
-  on_start = vim.schedule_wrap(function()
-    if #parsers_pending == 0 then
+  ---@param lang string
+  local function start(lang)
+    local ok = pcall(vim.treesitter.start, 0, lang)
+    if not ok then
+      vim.notify("Parser not found for " .. lang, vim.log.levels.WARN)
       return false
     end
-    for _, data in ipairs(parsers_pending) do
-      if vim.api.nvim_win_is_valid(data.winnr) and vim.api.nvim_buf_is_valid(data.bufnr) then
-        vim._with({ win = data.winnr, buf = data.bufnr }, function()
-          if start(data.lang) then
-            parsers_loaded[data.lang] = true
-          else
-            parsers_failed[data.lang] = true
-          end
-        end)
+
+    -- NOTE: not needed if indent actually worked for these languages without
+    -- vim regex or if treesitter indent was used
+    if vim.tbl_contains(allow_vim_regex, vim.bo.filetype) then
+      vim.bo.syntax = "on"
+    end
+
+    vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+    -- NOTE: indent forces a re-parse, which negates the benefit of async
+    -- parsing see https://github.com/nvim-treesitter/nvim-treesitter/issues/7840
+    -- vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+
+    return true
+  end
+
+  -- NOTE: parsers may take long to load (big binary files) so try to start
+  -- them async in the next render if not loaded yet
+  vim.api.nvim_set_decoration_provider(ns, {
+    on_start = vim.schedule_wrap(function()
+      if #parsers_pending == 0 then
+        return false
       end
-    end
-    parsers_pending = {}
-  end),
-})
+      for _, data in ipairs(parsers_pending) do
+        if vim.api.nvim_win_is_valid(data.winnr) and vim.api.nvim_buf_is_valid(data.bufnr) then
+          vim._with({ win = data.winnr, buf = data.bufnr }, function()
+            if start(data.lang) then
+              parsers_loaded[data.lang] = true
+            else
+              parsers_failed[data.lang] = true
+            end
+          end)
+        end
+      end
+      parsers_pending = {}
+    end),
+  })
 
-vim.api.nvim_create_autocmd("FileType", {
-  callback = function(event)
-    local lang = vim.treesitter.language.get_lang(event.match)
-    if not lang or parsers_failed[lang] then
-      return
-    end
+  vim.api.nvim_create_autocmd("FileType", {
+    callback = function(event)
+      local lang = vim.treesitter.language.get_lang(event.match)
+      if not lang or parsers_failed[lang] then
+        return
+      end
 
-    if parsers_loaded[lang] then
-      start(lang)
-    else
-      table.insert(parsers_pending, {
-        lang = lang,
-        winnr = vim.api.nvim_get_current_win(),
-        bufnr = event.buf,
-      })
-    end
-  end,
-})
+      if parsers_loaded[lang] then
+        start(lang)
+      else
+        table.insert(parsers_pending, {
+          lang = lang,
+          winnr = vim.api.nvim_get_current_win(),
+          bufnr = event.buf,
+        })
+      end
+    end,
+  })
 
-vim.api.nvim_create_user_command("TSInstallAll", function()
-  require("nvim-treesitter").install(ensure_installed)
-end, {})
+  vim.api.nvim_create_user_command("TSInstallAll", function()
+    require("nvim-treesitter").install(ensure_installed)
+  end, {})
 
-require("nvim-treesitter").setup({
-  ensure_installed,
-  allow_vim_regex,
-})
+  require("nvim-treesitter").setup({
+    ensure_installed,
+    allow_vim_regex,
+  })
+end)

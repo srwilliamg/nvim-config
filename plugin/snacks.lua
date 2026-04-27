@@ -18,9 +18,9 @@ local logo = [[
  ]]
 
 vim.pack.add({
-  "https://github.com/folke/which-key.nvim",
   "https://github.com/folke/snacks.nvim",
-})
+  "https://github.com/folke/which-key.nvim",
+}, { load = true })
 
 require("snacks").setup({
   terminal = {

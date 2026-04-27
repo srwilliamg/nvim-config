@@ -1,6 +1,6 @@
 local desc = Utils.plugin_keymap_desc("Tree")
 
-vim.pack.add({ Utils.github("nvim-tree/nvim-tree.lua"), Utils.github("nvim-tree/nvim-web-devicons") })
+vim.pack.add({ Utils.github("nvim-tree/nvim-tree.lua"), Utils.github("nvim-tree/nvim-web-devicons") }, { load = true })
 
 local function my_on_attach(bufnr)
   local api = require("nvim-tree.api")

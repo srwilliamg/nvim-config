@@ -18,10 +18,6 @@
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "dapui": {
-      "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
-      "src": "https://github.com/rcarriga/nvim-dap-ui"
-    },
     "diffview": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
@@ -52,18 +48,6 @@
       "src": "https://github.com/rebelot/kanagawa.nvim"
     },
     "lint": {
-      "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
-      "src": "https://github.com/mfussenegger/nvim-lint"
-    },
-    "lint-mf": {
-      "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
-      "src": "https://github.com/mfussenegger/nvim-lint"
-    },
-    "linter": {
-      "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
-      "src": "https://github.com/mfussenegger/nvim-lint"
-    },
-    "lintmf": {
       "rev": "eab58b48eb11d7745c11c505e0f3057165902461",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },

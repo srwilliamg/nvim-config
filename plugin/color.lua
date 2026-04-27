@@ -1,6 +1,6 @@
 vim.pack.add({
   Utils.github("rebelot/kanagawa.nvim"),
-})
+}, { load = true })
 
 require("kanagawa").setup({
   theme = "wave",

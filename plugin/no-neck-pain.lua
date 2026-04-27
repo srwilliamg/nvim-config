@@ -1,3 +1,4 @@
+-- require("lazyload").on_vim_enter(function()
 vim.pack.add({
   Utils.github("shortcuts/no-neck-pain.nvim"),
 })
@@ -79,3 +80,4 @@ require("no-neck-pain").setup({
     },
   },
 })
+-- end)

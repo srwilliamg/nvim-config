@@ -3,20 +3,21 @@ require("lazyload").on_vim_enter(function()
     { src = Utils.github("mfussenegger/nvim-lint"), name = "lint" },
   })
 
+  local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
   vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    pattern = "*.go",
+    group = lint_augroup,
     callback = function()
-      require("lint").linters_by_ft = {
-        markdown = { "vale" },
-        go = { "golangcilint" },
-      }
-      -- try_lint without arguments runs the linters defined in `linters_by_ft`
-      -- for the current filetype
-      require("lint").try_lint()
+      if vim.bo.modifiable then
+        require("lint").try_lint(nil, { ignore_errors = true })
+      end
 
-      -- You can call `try_lint` with a linter name or a list of names to always
-      -- run specific linters, independent of the `linters_by_ft` configuration
-      -- require("lint").try_lint("golangcilint")
+      -- require("lint").linters_by_ft = {
+      --   markdown = { "vale" },
+      --   go = { "golangcilint" },
+      -- }
+      -- -- try_lint without arguments runs the linters defined in `linters_by_ft`
+      -- -- for the current filetype
+      -- require("lint").try_lint()
     end,
   })
 end)

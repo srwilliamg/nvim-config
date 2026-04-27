@@ -21,40 +21,40 @@ require("lazyload").on_vim_enter(function()
     },
   }
 
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function()
-      for name, config in pairs(adapters or {}) do
-        if type(name) == "number" then
-          if type(config) == "string" then
-            config = require(config)
-          end
-          adapters[#adapters + 1] = config
-        elseif config ~= false then
-          local adapter = require(name)
-          if type(config) == "table" and not vim.tbl_isempty(config) then
-            local meta = getmetatable(adapter)
-            if adapter.setup then
-              adapter.setup(config)
-            elseif adapter.adapter then
-              adapter.adapter(config)
-              adapter = adapter.adapter
-            elseif meta and meta.__call then
-              adapter(config)
-            else
-              error("Adapter " .. name .. " does not support setup")
-            end
-          end
-          adapters[#adapters + 1] = adapter
+  -- vim.api.nvim_create_autocmd("LspAttach", {
+  --   callback = function()
+  for name, config in pairs(adapters or {}) do
+    if type(name) == "number" then
+      if type(config) == "string" then
+        config = require(config)
+      end
+      adapters[#adapters + 1] = config
+    elseif config ~= false then
+      local adapter = require(name)
+      if type(config) == "table" and not vim.tbl_isempty(config) then
+        local meta = getmetatable(adapter)
+        if adapter.setup then
+          adapter.setup(config)
+        elseif adapter.adapter then
+          adapter.adapter(config)
+          adapter = adapter.adapter
+        elseif meta and meta.__call then
+          adapter(config)
+        else
+          error("Adapter " .. name .. " does not support setup")
         end
       end
+      adapters[#adapters + 1] = adapter
+    end
+  end
 
-      local opts = {}
-      opts.adapters = adapters
-      require("neotest").setup(opts)
-    end,
+  local opts = {}
+  opts.adapters = adapters
+  require("neotest").setup(opts)
+  -- end,
 
-    once = true,
-  })
+  --   once = true,
+  -- })
 
   local function map(lhs, rhs, desc)
     vim.keymap.set("n", lhs, rhs, { desc = desc })

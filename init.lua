@@ -39,52 +39,32 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
--- vim.pack.add({gh("rafamadriz/friendly-snippets")},
---     {gh("nvim-tree/nvim-web-devicons")},
---     -- "giuxtaposition/blink-cmp-copilot",
---     {
---         src = gh("L3MON4D3/LuaSnip"),
---         version = vim.version.range("2.x") -- or vim.version.range('*') for latest
---     }, {
---         src = gh("saghen/blink.cmp"),
---         version = vim.version.range("1.x") -- or vim.version.range('*') for latest
+-- vim.diagnostic.config({
+--   signs = {
+--     numhl = {
+--       [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+--       [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+--       [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+--       [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
 --     },
---     {gh("rebelot/kanagawa.nvim")},
---     {gh("mason-org/mason.nvim")},
---     {gh("neovim/nvim-lspconfig")},
---     {gh("mason-org/mason-lspconfig.nvim")},
---     {gh("folke/snacks.nvim")},
---     {gh("nvim-treesitter/nvim-treesitter")})
-
-vim.diagnostic.config({
-  signs = {
-    numhl = {
-      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-    },
-    text = {
-      [vim.diagnostic.severity.ERROR] = "X",
-      [vim.diagnostic.severity.HINT] = "?",
-      [vim.diagnostic.severity.INFO] = "I",
-      [vim.diagnostic.severity.WARN] = "!",
-    },
-  },
-  update_in_insert = true,
-  virtual_text = false,
-  virtual_lines = {
-    current_line = true,
-  },
-})
+--     text = {
+--       [vim.diagnostic.severity.ERROR] = "X",
+--       [vim.diagnostic.severity.HINT] = "?",
+--       [vim.diagnostic.severity.INFO] = "I",
+--       [vim.diagnostic.severity.WARN] = "!",
+--     },
+--   },
+--   update_in_insert = true,
+--   virtual_text = false,
+--   virtual_lines = {
+--     current_line = true,
+--   },
+-- })
 
 vim.lsp.inlay_hint.enable(true)
 _G.Utils = require("autocmds.initial")
 _G.Utils = require("utils")
 
--- config Lazy
-
--- vim.cmd("colorscheme kanagawa-dragon")
 require("config.keymaps")
 
 if vim.g.vscode then

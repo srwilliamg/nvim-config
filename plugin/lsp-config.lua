@@ -1,6 +1,6 @@
 local desc = Utils.plugin_keymap_desc("LSP")
 
-vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim", "https://github.com/neovim/nvim-lspconfig", "https://github.com/mason-org/mason.nvim" })
+vim.pack.add({ Utils.github("mason-org/mason-lspconfig.nvim"), Utils.github("neovim/nvim-lspconfig"), Utils.github("mason-org/mason.nvim") }, { load = true })
 
 require("mason").setup({
   ui = {

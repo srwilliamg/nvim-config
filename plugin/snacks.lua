@@ -87,7 +87,7 @@ require("snacks").setup({
   indent = { enabled = true },
   input = { enabled = true },
   picker = { enabled = true, sources = { explorer = { hidden = true }, grep = { hidden = true } } },
-  scratch = { ft = "markdown" },
+  scratch = { ft = "markdown", win = { width = 0.9, height = 0.9, backdrop = 60 } },
   gh = { enabled = false },
   gitbrowse = { enabled = false },
   image = { enabled = false },

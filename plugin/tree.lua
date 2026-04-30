@@ -66,7 +66,8 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false, -- Set to false to show dotfiles by default
+    git_ignored = false, -- Optional: show git-ignored files
   },
 
   on_attach = my_on_attach,

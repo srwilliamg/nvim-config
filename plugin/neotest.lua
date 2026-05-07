@@ -1,7 +1,4 @@
 require("lazyload").on_override(function()
-  -- vim.api.nvim_create_autocmd("FileType", {
-  -- pattern = { "go", "javascript", "typescript", "lua" },
-  -- callback = function()
   vim.pack.add({
     Utils.github("nvim-neotest/neotest"),
     Utils.github("nvim-neotest/nvim-nio"),
@@ -14,35 +11,9 @@ require("lazyload").on_override(function()
     Utils.github("leoluz/nvim-dap-go"),
   })
 
-  -- for name, config in pairs(adapters or {}) do
-  --   if type(name) == "number" then
-  --     if type(config) == "string" then
-  --       config = require(config)
-  --     end
-  --     adapters[#adapters + 1] = config
-  --   elseif config ~= false then
-  --     local adapter = require(name)
-  --     if type(config) == "table" and not vim.tbl_isempty(config) then
-  --       local meta = getmetatable(adapter)
-  --       if adapter.setup then
-  --         adapter.setup(config)
-  --       elseif adapter.adapter then
-  --         adapter.adapter(config)
-  --         adapter = adapter.adapter
-  --       elseif meta and meta.__call then
-  --         adapter(config)
-  --       else
-  --         error("Adapter " .. name .. " does not support setup")
-  --       end
-  --     end
-  --     adapters[#adapters + 1] = adapter
-  --   end
-  -- end
-
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "go", "javascript", "typescript", "lua" },
     callback = function()
-      -- vim.defer_fn(function()
       vim.cmd.packadd("neotest")
       local opts = {
         discovery = { enabled = true, concurrent = 0 },
@@ -51,7 +22,6 @@ require("lazyload").on_override(function()
         require("neotest-golang")({}),
       }
       require("neotest").setup(opts)
-      -- end, 100)
     end,
     once = true,
   })
@@ -61,7 +31,7 @@ require("lazyload").on_override(function()
   end
 
 -- stylua: ignore
-map("<leader>ta", function() require("neotest").run.attach() end, "[t]est [a]ttach")
+  map("<leader>ta", function() require("neotest").run.attach() end, "[t]est [a]ttach")
   map("<leader>tf", function()
     require("neotest").summary.open()
     require("neotest").run.run(vim.fn.expand("%"))
@@ -105,8 +75,4 @@ map("<leader>ta", function() require("neotest").run.attach() end, "[t]est [a]tta
     require("neotest").summary.close()
     require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" })
   end, "Debug current file")
-  -- end,
-
-  --   once = true,
-  -- })
 end)

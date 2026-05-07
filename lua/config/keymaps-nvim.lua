@@ -65,10 +65,9 @@ vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 -- )
 
 -- Terminal mode escape to normal mode
+-- Allow exiting insert mode in terminal by hitting <ESC>
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
 
--- Allow exiting insert mode in terminal by hitting <ESC>
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 -- Feed ESC in terminal mode using <C-\>
 vim.keymap.set("t", "<C-c>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-c><C-c>", "<C-c>")

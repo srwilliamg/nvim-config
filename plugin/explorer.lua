@@ -40,7 +40,7 @@ function InitOil()
   })
 end
 
-InitOil()
+-- InitOil()
 
 function InitNeotree()
   vim.pack.add({ Utils.github("nvim-tree/nvim-tree.lua"), Utils.github("nvim-tree/nvim-web-devicons") })

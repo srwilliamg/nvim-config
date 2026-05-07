@@ -39,6 +39,9 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 -- vim.diagnostic.config({
 --   signs = {
 --     numhl = {
@@ -62,7 +65,7 @@ vim.opt.colorcolumn = "80"
 -- })
 
 vim.lsp.inlay_hint.enable(true)
-_G.Utils = require("autocmds.initial")
+require("autocmds.initial")
 _G.Utils = require("utils")
 
 require("config.keymaps")

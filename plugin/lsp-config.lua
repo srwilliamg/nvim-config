@@ -55,11 +55,6 @@ vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, {
 vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, {
   desc = desc("Refresh & Display Codelens"),
 })
-vim.keymap.set("n", "<leader>cR", function()
-  Snacks.rename.rename_file()
-end, {
-  desc = desc("Rename File"),
-})
 
 -- Code Display Hints
 vim.keymap.set("n", "<leader>cdh", function()

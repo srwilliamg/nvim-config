@@ -33,8 +33,5 @@ require("lazyload").on_vim_enter(function()
       timeout_ms = 500,
       lsp_format = "fallback",
     },
-    config = function(_, opts)
-      require("conform").setup(opts)
-    end,
   })
 end)

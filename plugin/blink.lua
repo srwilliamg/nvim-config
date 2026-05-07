@@ -1,6 +1,5 @@
 vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
-  group = group,
   once = true,
   callback = function()
     vim.pack.add({ {

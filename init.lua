@@ -42,6 +42,8 @@ vim.opt.colorcolumn = "80"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.lsp.inlay_hint.enable(true)
+
 -- vim.diagnostic.config({
 --   signs = {
 --     numhl = {
@@ -64,7 +66,6 @@ vim.opt.splitbelow = true
 --   },
 -- })
 
-vim.lsp.inlay_hint.enable(true)
 require("autocmds.initial")
 _G.Utils = require("utils")
 

@@ -38,16 +38,6 @@ require("lazyload").on_vim_enter(function()
 
   local allow_vim_regex = { "markdown" }
 
-  -- auto build on update
-  vim.api.nvim_create_autocmd("PackChanged", {
-    callback = function(ev)
-      local name = ev.data.spec.name
-      if name == "nvim-treesitter" then
-        vim.cmd("TSUpdate")
-      end
-    end,
-  })
-
   vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
   })

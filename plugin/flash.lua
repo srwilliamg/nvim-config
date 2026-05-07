@@ -31,8 +31,4 @@ require("lazyload").on_vim_enter(function()
   vim.keymap.set("c", "<c-s>", function()
     require("flash").toggle()
   end, { desc = "Toggle Flash Search" })
-
-  vim.keymap.set("o", "r", function()
-    require("flash").remote()
-  end, { desc = "Remote Flash" })
 end)

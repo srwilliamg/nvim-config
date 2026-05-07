@@ -40,8 +40,7 @@
     },
     "harpoon": {
       "rev": "0378a6c428a0bed6a2781d459d7943843f374bce",
-      "src": "https://github.com/ThePrimeagen/harpoon",
-      "version": "'0378a6c428a0bed6a2781d459d7943843f374bce'"
+      "src": "https://github.com/ThePrimeagen/harpoon"
     },
     "kanagawa.nvim": {
       "rev": "8ad3b4cdcc804b332c32db8f9743667e1bb82b99",

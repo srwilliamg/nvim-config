@@ -32,8 +32,8 @@ function InitOil()
     end,
   })
 
-  vim.keymap.set("n", "<leader>lf", "<CMD>Oil<CR>", { desc = desc("Open parent directory") })
-  vim.keymap.set("n", "<leader>e", function()
+  -- vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = desc("Open parent directory") })
+  vim.keymap.set("n", "<leader>o", function()
     vim.cmd("Oil .")
   end, {
     desc = desc("open current location"),
@@ -129,3 +129,5 @@ function InitNeotree()
     desc = desc("Buffers"),
   })
 end
+
+InitNeotree()

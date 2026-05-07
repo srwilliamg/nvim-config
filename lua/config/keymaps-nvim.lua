@@ -50,19 +50,19 @@ vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 -- vim.keymap.set({ "n", "v" }, "zM", vim.cmd.foldclose, opts)
 
 -- Easy find and replace.
-vim.keymap.set(
-  { "v" },
-  "<leader>wre",
-  '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
-  { desc = "Open search and replace for currently selected text" }
-)
-vim.keymap.set(
-  { "n" },
-  "<leader>wre",
-  ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
-
-  { desc = "Open search and replace for word under cursor" }
-)
+-- vim.keymap.set(
+--   { "v" },
+--   "<leader>wre",
+--   '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
+--   { desc = "Open search and replace for currently selected text" }
+-- )
+-- vim.keymap.set(
+--   { "n" },
+--   "<leader>wre",
+--   ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
+--
+--   { desc = "Open search and replace for word under cursor" }
+-- )
 
 -- Terminal mode escape to normal mode
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)

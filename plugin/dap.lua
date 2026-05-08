@@ -70,7 +70,7 @@ local initDapUI = function()
     },
   })
 
-  vim.api.nvim_clear_autocmd("FileType", {
+  vim.api.nvim_create_autocmd("FileType", {
     pattern = "dap-repl",
     callback = function()
       vim.cmd([[

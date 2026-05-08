@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command("InstallAllLocal", function()
-  vim.cmd("MasonInstall bash-language-server bashls delve docker-language-server docker_language_server eslint eslint-lsp go-debug-adapter gofumpt goimports golangci-lint gopls gotests harper_ls iferr json-lsp jsonls lua-language-server lua_ls markdownlint marksman prettier prettierd sqlfluff sqlls stylua ts_ls typescript-language-server yaml-language-server yamlls")
+  vim.cmd("MasonInstall bash-language-server delve docker-language-server eslint-lsp gofumpt goimports golangci-lint gopls gotests iferr json-lsp lua-language-server markdownlint marksman prettier prettierd sqlfluff sql-language-server stylua typescript-language-server yaml-language-server")
   vim.cmd("TSInstallAll")
 end, {})
 

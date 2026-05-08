@@ -56,7 +56,7 @@ local initDapUI = function()
           { id = "repl", size = 1 },
           { id = "console", size = 0 },
         },
-        size = 10,
+        size = 0.3,
         position = "bottom",
       },
     },
@@ -70,17 +70,27 @@ local initDapUI = function()
     },
   })
 
+  vim.api.nvim_clear_autocmd("FileType", {
+    pattern = "dap-repl",
+    callback = function()
+      vim.cmd([[
+      syntax match DapLogError /\v\c(error|falta|panic)/
+      syntax match DapLogWarn /\v\c(warn|warning)/
+      syntax match DapLogInfo /\v\c(info)/
+      syntax match DapLogDebug /\v\c(debug|trace)/
+      ]])
+      vim.api.nvim_set_hl(0, "DapLogError", { fg = "#f38ba8" })
+      vim.api.nvim_set_hl(0, "DapLogWarn", { fg = "#f9e2af" })
+      vim.api.nvim_set_hl(0, "DapLogInfo", { fg = "#89b4fa" })
+      vim.api.nvim_set_hl(0, "DapLogDebug", { fg = "#6c7086" })
+    end,
+  })
+
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({})
-    -- vim.cmd("Neotree close")
-  end
-  dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close({})
-    -- vim.cmd("Neotree")
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close({})
-    -- vim.cmd("Neotree")
   end
 
   vim.keymap.set("n", "<leader>du", function()

@@ -183,7 +183,6 @@ local initDAP = function()
       sourceMaps = true,
     },
   }
-  dap.set_log_level("TRACE")
   -- DAP Keymaps
   vim.keymap.set("n", "<leader>dr", function()
     vim.notify("Restarting Debugger...", vim.log.levels.INFO)

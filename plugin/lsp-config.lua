@@ -15,29 +15,20 @@ require("mason-lspconfig").setup({
   automatic_enable = true,
   ensure_installed = {
     "lua_ls",
-    "eslint",
-    "gopls",
     "jsonls",
+    "gopls",
     "stylua",
-    "ts_ls",
     "yamlls",
     "sqlls",
+    "eslint",
     "ts_ls",
-    "eslint", -- "hrper_ls",
   },
 })
 
--- placing the builtin LSP config here for organization reasons.
--- vim.lsp.config("*", {
---     capabilities = vim.lsp.protocol.make_client_capabilities()
--- })
-
--- require("lazyload").on_vim_enter(function()
 local configs = require("lsp.configs")
 -- config also enables the LSP
 vim.lsp.config("lua_ls", configs.lua)
 vim.lsp.config("gopls", configs.go)
--- vim.lsp.config("harper_ls", configs.harper)
 
 -- LSP
 vim.keymap.set("n", "K", vim.lsp.buf.hover, {
@@ -56,15 +47,7 @@ vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, {
   desc = desc("Refresh & Display Codelens"),
 })
 
--- Code Display Hints
 vim.keymap.set("n", "<leader>cdh", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
   vim.notify("Toggled Go inline hints")
 end)
--- end)
-
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function()
---   end,
---   once = true,
--- })

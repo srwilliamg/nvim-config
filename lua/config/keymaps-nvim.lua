@@ -1,7 +1,7 @@
--- VSCode Neovim
+-- Neovim
 local opts = { noremap = true, silent = true }
 
--- Move between spaces
+-- Move between splits
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
@@ -38,31 +38,6 @@ vim.keymap.set("t", "<C-Up>", "<cmd>resize -2<CR>", opts)
 vim.keymap.set("t", "<C-Down>", "<cmd>resize +2<CR>", opts)
 vim.keymap.set("t", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
 vim.keymap.set("t", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
-
--- fold current block
--- toggle fold
--- vim.keymap.set({ "n", "v" }, "za", vim.cmd.fold, opts)
--- -- -- unfold current block
--- vim.keymap.set({ "n", "v" }, "zm", vim.cmd.unfold, opts)
--- -- -- fold all blocks
--- vim.keymap.set({ "n", "v" }, "zR", vim.cmd.foldopen, opts)
--- -- -- unfold all blocks
--- vim.keymap.set({ "n", "v" }, "zM", vim.cmd.foldclose, opts)
-
--- Easy find and replace.
--- vim.keymap.set(
---   { "v" },
---   "<leader>wre",
---   '"hy:%s/<C-r>h/<C-r>h/gc<left><left><left>',
---   { desc = "Open search and replace for currently selected text" }
--- )
--- vim.keymap.set(
---   { "n" },
---   "<leader>wre",
---   ":%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>",
---
---   { desc = "Open search and replace for word under cursor" }
--- )
 
 -- Terminal mode escape to normal mode
 -- Allow exiting insert mode in terminal by hitting <ESC>

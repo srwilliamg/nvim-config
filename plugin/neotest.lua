@@ -1,16 +1,16 @@
-require("lazyload").on_override(function()
-  vim.pack.add({
-    Utils.github("nvim-neotest/neotest"),
-    Utils.github("nvim-neotest/nvim-nio"),
-    Utils.github("nvim-lua/plenary.nvim"),
-    Utils.github("antoinemadec/FixCursorHold.nvim"),
-    Utils.github("nvim-treesitter/nvim-treesitter"),
-    Utils.github("nvim-neotest/neotest-plenary"),
-    Utils.github("nvim-neotest/neotest-vim-test"),
-    Utils.github("fredrikaverpil/neotest-golang"),
-    Utils.github("leoluz/nvim-dap-go"),
-  })
+vim.pack.add({
+  Utils.github("nvim-neotest/neotest"),
+  Utils.github("nvim-neotest/nvim-nio"),
+  Utils.github("nvim-lua/plenary.nvim"),
+  Utils.github("antoinemadec/FixCursorHold.nvim"),
+  Utils.github("nvim-treesitter/nvim-treesitter"),
+  Utils.github("nvim-neotest/neotest-plenary"),
+  Utils.github("nvim-neotest/neotest-vim-test"),
+  Utils.github("fredrikaverpil/neotest-golang"),
+  Utils.github("leoluz/nvim-dap-go"),
+})
 
+require("lazyload").on_override(function()
   vim.api.nvim_create_autocmd("FileType", {
     pattern = { "go", "javascript", "typescript", "lua" },
     callback = function()

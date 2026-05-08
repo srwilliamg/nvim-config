@@ -14,7 +14,6 @@ keymap("n", "C", '"_C', opts)
 keymap("n", "<Space>", "", opts)
 
 -- COPY/PASTE SYSTEM-CLIPBOARD
--- yank to system clipboard using leader
 keymap({ "n", "v" }, "<leader>y", '"+y', opts)
 -- paste from system clipboard using leader
 keymap({ "n", "v" }, "<leader>p", '"+p', opts)
@@ -35,14 +34,9 @@ keymap("v", "K", ":m .-2<CR>==", opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- Removes highlighting after escaping vim search
--- keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
-
---  shortcut to beginning of line
--- keymap("n", "gs", "^", opts)
 -- format
 keymap("n", "<leader>f", function()
-  vim.lsp.buf.format({ async = true })
+  vim.lsp.buf.format({ async = true, lsp_format = "fallback" })
 end, opts)
 
 -- Copy relative path

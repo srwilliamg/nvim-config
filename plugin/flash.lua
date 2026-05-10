@@ -12,11 +12,11 @@ require("lazyload").on_vim_enter(function()
     },
   })
 
-  vim.keymap.set({ "n", "x", "o" }, "s", function()
+  vim.keymap.set({ "n", "x", "o" }, "M", function()
     require("flash").jump()
   end, { desc = "Flash Jump" })
 
-  vim.keymap.set({ "n", "x", "o" }, "S", function()
+  vim.keymap.set({ "n", "x", "o" }, "MM", function()
     require("flash").treesitter()
   end, { desc = "Flash Treesitter" })
 

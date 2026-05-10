@@ -30,18 +30,6 @@ require("snacks").setup({
       },
     },
   },
-  zen = {
-    win = {
-      width = 0.8,
-      backdrop = {
-        transparent = false,
-      },
-    },
-    center = true,
-    toggles = {
-      dim = true,
-    },
-  },
   bigfile = { enabled = true },
   dashboard = {
     width = 60,
@@ -83,17 +71,20 @@ require("snacks").setup({
     width = { min = 40, max = 0.6 },
     height = { min = 1, max = 0.6 },
   },
-  explorer = { enabled = false },
+  -- stylua: ignore start
+  explorer     = { enabled = false },
+  gh           = { enabled = false },
+  gitbrowse    = { enabled = false },
+  image        = { enabled = false },
+  scroll       = { enabled = false },
+  statuscolumn = { enabled = false },
+  zen          = { enabled = false },
+  -- stylua: ignore end
   indent = { enabled = true },
   input = { enabled = true },
   picker = { hidden = true, ignored = true, enabled = true, sources = { explorer = { hidden = true, ignored = false }, grep = { hidden = true, ignored = false } } },
-  scratch = { ft = "markdown", win = { width = 0.9, height = 0.9, backdrop = 60 } },
-  gh = { enabled = false },
-  gitbrowse = { enabled = false },
-  image = { enabled = false },
-  statuscolumn = { enabled = false },
-  scroll = { enabled = false },
   quickfile = { enabled = true },
+  scratch = { ft = "markdown", win = { width = 0.9, height = 0.9, backdrop = 60 } },
   scope = { enabled = true },
   words = { enabled = true },
   styles = {

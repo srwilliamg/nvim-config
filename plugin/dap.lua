@@ -6,27 +6,12 @@ local initMasonDAP = function()
     },
     automatic_installation = true,
     handlers = {
-      function(config)
-        require("mason-nvim-dap").default_setup(config)
-      end,
       delve = function(config)
         table.insert(config.configurations, 1, {
-          -- args = function()
-          --   return vim.split(vim.fn.input("args> "), " ")
-          -- end,
           type = "delve",
           name = "Run: cmd/api/main",
           request = "launch",
           program = "${workspaceFolder}/cmd/api/main.go",
-          envFile = "${workspaceFolder}/.env",
-          outputMode = "remote",
-          console = "internalConsole",
-        })
-        table.insert(config.configurations, 1, {
-          type = "delve",
-          name = "Run: file",
-          request = "launch",
-          program = "${file}",
           envFile = "${workspaceFolder}/.env",
           outputMode = "remote",
           console = "internalConsole",
@@ -54,7 +39,6 @@ local initDapUI = function()
       {
         elements = {
           { id = "repl", size = 1 },
-          { id = "console", size = 0 },
         },
         size = 0.3,
         position = "bottom",
@@ -87,18 +71,14 @@ local initDapUI = function()
   })
 
   dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open({})
+    dapui.open()
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close({})
+    dapui.close()
   end
 
-  vim.keymap.set("n", "<leader>du", function()
-    require("dapui").toggle()
-  end, { desc = "Dap UI" })
-  vim.keymap.set({ "n", "v" }, "<leader>de", function()
-    require("dapui").eval()
-  end, { desc = "Eval" })
+  vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Dap UI" })
+  vim.keymap.set({ "n", "v" }, "<leader>de", dapui.eval, { desc = "Eval" })
 end
 
 local initDAP = function()
@@ -109,25 +89,10 @@ local initDAP = function()
     dap_configurations = {
       {
         type = "go",
-        name = "Run: ./main",
+        name = "Debug: main",
         request = "launch",
         program = "${workspaceFolder}/main.go",
         port = "${port}",
-        console = "integratedTerminal",
-        envFile = "${workspaceFolder}/.env",
-        outputMode = "remote",
-        dlvFlags = {
-          "--log",
-          "--log-output=debugger,dap", -- More verbose logging
-          "--log-dest=/tmp/delve-verbose.log",
-        },
-      },
-      {
-        type = "go",
-        name = "Run: file",
-        request = "launch",
-        program = "${file}",
-        buildFlags = require("dap-go").get_build_flags,
         console = "integratedTerminal",
         envFile = "${workspaceFolder}/.env",
         outputMode = "remote",
@@ -162,16 +127,8 @@ local initDAP = function()
       args = { local_debugger, "${port}" },
     },
   }
-  dap.configurations.javascript = {
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch file",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-      sourceMaps = true,
-      skipFiles = { "<node_internals>/**", "node_modules/**" },
-    },
+
+  local js_shared = {
     {
       type = "pwa-node",
       request = "attach",
@@ -194,7 +151,20 @@ local initDAP = function()
       skipFiles = { "<node_internals>/**", "node_modules/**" },
     },
   }
-  dap.configurations.typescript = {
+
+  dap.configurations.javascript = vim.list_extend({
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch file",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+      sourceMaps = true,
+      skipFiles = { "<node_internals>/**", "node_modules/**" },
+    },
+  }, js_shared)
+
+  dap.configurations.typescript = vim.list_extend({
     {
       type = "pwa-node",
       request = "launch",
@@ -208,27 +178,6 @@ local initDAP = function()
     },
     {
       type = "pwa-node",
-      request = "attach",
-      name = "Attach to process",
-      processId = require("dap.utils").pick_process,
-      cwd = "${workspaceFolder}",
-      sourceMaps = true,
-      skipFiles = { "<node_internals>/**", "node_modules/**" },
-    },
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch Jest test",
-      runtimeExecutable = "npx",
-      runtimeArgs = { "jest", "--runInBand", "--no-coverage", "${file}" },
-      rootPath = "${workspaceFolder}",
-      cwd = "${workspaceFolder}",
-      console = "integratedTerminal",
-      sourceMaps = true,
-      skipFiles = { "<node_internals>/**", "node_modules/**" },
-    },
-    {
-      type = "pwa-node",
       request = "launch",
       name = "Launch npm debug script",
       runtimeExecutable = "npm",
@@ -237,102 +186,50 @@ local initDAP = function()
       sourceMaps = true,
       skipFiles = { "<node_internals>/**", "node_modules/**" },
     },
-  }
+  }, js_shared)
+
+
   -- DAP Keymaps
-  vim.keymap.set("n", "<leader>dr", function()
-    vim.notify("Restarting Debugger...", vim.log.levels.INFO)
-    require("dap").restart()
-  end, { desc = "toggle [d]ebug [r]estart" })
-
-  vim.keymap.set("n", "<leader>db", function()
-    require("dap").toggle_breakpoint()
-  end, { desc = "toggle [d]ebug [b]reakpoint" })
-
-  vim.keymap.set("n", "<leader>dB", function()
-    require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-  end, { desc = "[d]ebug [B]reakpoint (conditional)" })
-
-  vim.keymap.set("n", "<leader>dc", function()
-    require("dap").continue()
-  end, { desc = "[d]ebug [c]ontinue" })
-
-  vim.keymap.set("n", "<leader>dC", function()
-    require("dap").run_to_cursor()
-  end, { desc = "[d]ebug [C]ursor" })
-
-  vim.keymap.set("n", "<leader>dg", function()
-    require("dap").goto_()
-  end, { desc = "[d]ebug [g]o to line" })
-
-  vim.keymap.set("n", "<leader>do", function()
-    require("dap").step_over()
-  end, { desc = "[d]ebug step [o]ver" })
-
-  vim.keymap.set("n", "<leader>dO", function()
-    require("dap").step_out()
-  end, { desc = "[d]ebug step [O]ut" })
-
-  vim.keymap.set("n", "<leader>di", function()
-    require("dap").step_into()
-  end, { desc = "[d]ebug [i]nto" })
-
-  vim.keymap.set("n", "<leader>dj", function()
-    require("dap").down()
-  end, { desc = "[d]ebug [j]ump down" })
-
-  vim.keymap.set("n", "<leader>dk", function()
-    require("dap").up()
-  end, { desc = "[d]ebug [k]ump up" })
-
-  vim.keymap.set("n", "<leader>dl", function()
-    require("dap").run_last()
-  end, { desc = "[d]ebug [l]ast" })
-
-  vim.keymap.set("n", "<leader>dp", function()
-    require("dap").pause()
-  end, { desc = "[d]ebug [p]ause" })
-
-  vim.keymap.set("n", "<leader>dR", function()
-    require("dap").repl.toggle()
-  end, { desc = "[d]ebug [r]epl" })
-
-  vim.keymap.set("n", "<leader>ds", function()
-    require("dap").session()
-  end, { desc = "[d]ebug [s]ession" })
-
-  vim.keymap.set("n", "<leader>dt", function()
-    require("dap").terminate()
-  end, { desc = "[d]ebug [t]erminate" })
-
-  vim.keymap.set("n", "<leader>dw", function()
-    require("dap.ui.widgets").hover()
-  end, { desc = "[d]ebug [w]idgets" })
-
-  -- Function keys
-  vim.keymap.set("n", "<F5>", function()
-    require("dap").continue()
-  end, { desc = "Debug: Continue" })
-  vim.keymap.set("n", "<F10>", function()
-    require("dap").step_over()
-  end, { desc = "Debug: Step Over" })
-  vim.keymap.set("n", "<F11>", function()
-    require("dap").step_into()
-  end, { desc = "Debug: Step Into" })
-  vim.keymap.set("n", "<F12>", function()
-    require("dap").step_out()
-  end, { desc = "Debug: Step Out" })
+  -- stylua: ignore start
+  local maps = {
+    { "<leader>dr", function() vim.notify("Restarting Debugger...", vim.log.levels.INFO); dap.restart() end, "toggle [d]ebug [r]estart" },
+    { "<leader>db", dap.toggle_breakpoint,                                                                    "toggle [d]ebug [b]reakpoint" },
+    { "<leader>dB", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end,               "[d]ebug [B]reakpoint (conditional)" },
+    { "<leader>dc", dap.continue,                                                                             "[d]ebug [c]ontinue" },
+    { "<leader>dC", dap.run_to_cursor,                                                                        "[d]ebug [C]ursor" },
+    { "<leader>dg", dap.goto_,                                                                                "[d]ebug [g]o to line" },
+    { "<leader>do", dap.step_over,                                                                            "[d]ebug step [o]ver" },
+    { "<leader>dO", dap.step_out,                                                                             "[d]ebug step [O]ut" },
+    { "<leader>di", dap.step_into,                                                                            "[d]ebug [i]nto" },
+    { "<leader>dj", dap.down,                                                                                 "[d]ebug [j]ump down" },
+    { "<leader>dk", dap.up,                                                                                   "[d]ebug [k]jump up" },
+    { "<leader>dl", dap.run_last,                                                                             "[d]ebug [l]ast" },
+    { "<leader>dp", dap.pause,                                                                                "[d]ebug [p]ause" },
+    { "<leader>dR", dap.repl.toggle,                                                                          "[d]ebug [R]epl" },
+    { "<leader>ds", dap.session,                                                                              "[d]ebug [s]ession" },
+    { "<leader>dt", dap.terminate,                                                                            "[d]ebug [t]erminate" },
+    { "<leader>dw", require("dap.ui.widgets").hover,                                                          "[d]ebug [w]idgets" },
+    { "<F5>",       dap.continue,                                                                             "Debug: Continue" },
+    { "<F10>",      dap.step_over,                                                                            "Debug: Step Over" },
+    { "<F11>",      dap.step_into,                                                                            "Debug: Step Into" },
+    { "<F12>",      dap.step_out,                                                                             "Debug: Step Out" },
+  }
+  -- stylua: ignore end
+  for _, m in ipairs(maps) do
+    vim.keymap.set("n", m[1], m[2], { desc = m[3] })
+  end
 end
 
+vim.pack.add({
+  Utils.github("rcarriga/nvim-dap-ui"),
+  Utils.github("jay-babu/mason-nvim-dap.nvim"),
+  Utils.github("mfussenegger/nvim-dap"),
+  Utils.github("theHamsta/nvim-dap-virtual-text"),
+  Utils.github("nvim-neotest/nvim-nio"),
+  Utils.github("mason-org/mason-lspconfig.nvim"),
+  Utils.github("leoluz/nvim-dap-go"),
+})
 require("lazyload").on_vim_enter(function()
-  vim.pack.add({
-    Utils.github("rcarriga/nvim-dap-ui"),
-    Utils.github("jay-babu/mason-nvim-dap.nvim"),
-    Utils.github("mfussenegger/nvim-dap"),
-    Utils.github("theHamsta/nvim-dap-virtual-text"),
-    Utils.github("nvim-neotest/nvim-nio"),
-    Utils.github("mason-org/mason-lspconfig.nvim"),
-    Utils.github("leoluz/nvim-dap-go"),
-  })
   initDAP()
   initDapUI()
   initMasonDAP()
